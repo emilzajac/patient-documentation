@@ -2,6 +2,7 @@ package com.patient.treatment.documentation.gui.service;
 
 import com.patient.treatment.documentation.gui.model.Documentation;
 import com.patient.treatment.documentation.gui.repository.DocumentationRepository;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +19,9 @@ public class DocumentationService {
     public Documentation save(Documentation documentation) {
         return documentationRepository.save(documentation);
     }
+
+    public Documentation findByPatientPesel(String pesel) {
+        return documentationRepository.findAllByPatientPesel(DigestUtils.sha256Hex(pesel));
+    }
+
 }

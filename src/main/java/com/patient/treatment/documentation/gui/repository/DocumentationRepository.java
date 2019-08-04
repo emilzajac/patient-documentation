@@ -6,4 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DocumentationRepository extends JpaRepository<Documentation, Long> {
+
+    Documentation findAllByPatientPesel(String pesel);
+
+    Documentation findAllByDoctorEmail(String email);
+
 }

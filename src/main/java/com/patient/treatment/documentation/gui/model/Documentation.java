@@ -1,5 +1,7 @@
 package com.patient.treatment.documentation.gui.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
 @Data
 @Builder
 @NoArgsConstructor
@@ -38,7 +41,7 @@ public class Documentation {
     @OneToOne
     private Doctor doctor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
 

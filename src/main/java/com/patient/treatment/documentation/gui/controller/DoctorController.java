@@ -1,7 +1,6 @@
 package com.patient.treatment.documentation.gui.controller;
 
 import com.patient.treatment.documentation.gui.model.Doctor;
-import com.patient.treatment.documentation.gui.model.Documentation;
 import com.patient.treatment.documentation.gui.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +22,8 @@ public class DoctorController {
     }
 
     @PutMapping
-    public ResponseEntity save(@RequestBody Doctor doctor) {
-        return ResponseEntity.ok(doctorService.save(doctor));
+    public ResponseEntity createDoctor(@RequestBody Doctor doctor) {
+        return ResponseEntity.ok(doctorService.createDoctor(doctor));
     }
 
     //TODO For testing purpose
@@ -32,10 +31,11 @@ public class DoctorController {
     public ResponseEntity saveDoctor() {
         Doctor jan = Doctor.builder()
                 .name("Jan")
+                .surname("Kowalski")
                 .email("jancg@mail.com")
                 .password("1234")
                 .build();
-        doctorService.save(jan);
+        doctorService.createDoctor(jan);
         return ResponseEntity.ok(jan);
     }
 

@@ -1,5 +1,7 @@
 package com.patient.treatment.documentation.gui.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.patient.treatment.documentation.gui.model.enumy.SexEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,22 +9,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "patient")
 public class Patient {
 
     @Id
@@ -46,13 +49,14 @@ public class Patient {
 
     private String postCode;
 
+    @Enumerated(EnumType.STRING)
     private SexEnum sexEnum;
 
     private LocalDateTime dateOfBirth;
 
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     private List<Documentation> documentations;
 
 }

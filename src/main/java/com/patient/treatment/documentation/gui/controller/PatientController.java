@@ -4,6 +4,8 @@ import com.patient.treatment.documentation.gui.model.Patient;
 import com.patient.treatment.documentation.gui.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +23,18 @@ public class PatientController {
     }
 
     @PutMapping
-    public ResponseEntity sayHello(@RequestBody Patient patient) {
-        return ResponseEntity.ok(patientService.savePatient(patient));
+    public ResponseEntity save(@RequestBody Patient patient) {
+        return ResponseEntity.ok(patientService.save(patient));
+    }
+
+    @GetMapping
+    public ResponseEntity find(@RequestBody String pesel) {
+        return ResponseEntity.ok(patientService.findByPesel(pesel));
+    }
+
+    @GetMapping(value = "/all")
+    public ResponseEntity findBy(@RequestBody String email) {
+        return ResponseEntity.ok(patientService.getAllWherePatientWasAssignToDoctor(email));
     }
 
 }

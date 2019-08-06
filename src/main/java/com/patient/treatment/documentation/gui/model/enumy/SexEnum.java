@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum SexEnum {
-    FIMALE("Kobieta"),
+    FEMALE("Kobieta"),
     MALE("Mężczyzna");
 
     private final String kod;

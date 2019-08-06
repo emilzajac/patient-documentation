@@ -1,12 +1,12 @@
-package com.patient.treatment.documentation.gui.model;
+package com.patient.treatment.documentation.gui.model.entites;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.patient.treatment.documentation.gui.model.enumy.SexEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.CascadeType;
@@ -20,8 +20,9 @@ import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-@Data
+@EqualsAndHashCode
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.controller;
 
-import com.patient.treatment.documentation.gui.model.Patient;
+import com.patient.treatment.documentation.gui.model.entites.Patient;
 import com.patient.treatment.documentation.gui.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/patient")
+@RequestMapping("/api/patient")
 public class PatientController {
 
     private final PatientService patientService;
@@ -27,14 +27,14 @@ public class PatientController {
         return ResponseEntity.ok(patientService.save(patient));
     }
 
-    @GetMapping
-    public ResponseEntity find(@RequestBody String pesel) {
+    @GetMapping(value = "/{pesel}")
+    public ResponseEntity find(@PathVariable String pesel) {
         return ResponseEntity.ok(patientService.findByPesel(pesel));
     }
 
-    @GetMapping(value = "/all")
-    public ResponseEntity findBy(@RequestBody String email) {
-        return ResponseEntity.ok(patientService.getAllWherePatientWasAssignToDoctor(email));
+    @GetMapping(value = "doctor/{email}")
+    public ResponseEntity findAllPatientsOfTheDoctor(@PathVariable String email) {
+        return ResponseEntity.ok(patientService.findAllPatientsOfTheDoctor(email));
     }
 
 }

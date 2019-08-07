@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.service;
 
-import com.patient.treatment.documentation.gui.model.dto.DocumentationInterface;
+import com.patient.treatment.documentation.gui.model.dto.DocumentationMapper;
 import com.patient.treatment.documentation.gui.model.entites.Documentation;
 import com.patient.treatment.documentation.gui.repository.DocumentationRepository;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -21,7 +21,7 @@ public class DocumentationService {
         return documentationRepository.save(documentation);
     }
 
-    public DocumentationInterface findByPatientPesel(String pesel) {
+    public DocumentationMapper findByPatientPesel(String pesel) {
         return documentationRepository.findAllByPatientPesel(DigestUtils.sha256Hex(pesel));
     }
 

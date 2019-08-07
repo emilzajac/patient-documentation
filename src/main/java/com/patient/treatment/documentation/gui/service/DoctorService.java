@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.service;
 
-import com.patient.treatment.documentation.gui.model.dto.DoctorInterface;
+import com.patient.treatment.documentation.gui.model.dto.DoctorMapper;
 import com.patient.treatment.documentation.gui.model.entites.Doctor;
 import com.patient.treatment.documentation.gui.repository.DoctorRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +33,7 @@ public class DoctorService {
         }
     }
 
-    public DoctorInterface findByEmail(String email) {
+    public DoctorMapper findByEmail(String email) {
         return doctorRepository.findByEmail(email);
     }
 

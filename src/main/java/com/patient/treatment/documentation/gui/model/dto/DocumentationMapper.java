@@ -3,7 +3,7 @@ package com.patient.treatment.documentation.gui.model.dto;
 import com.patient.treatment.documentation.gui.model.entites.Doctor;
 import com.patient.treatment.documentation.gui.model.entites.Patient;
 
-public interface DocumentationInterface {
+public interface DocumentationMapper {
 
     String getInterview();
 

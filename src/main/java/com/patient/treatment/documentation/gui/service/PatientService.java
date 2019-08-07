@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.service;
 
-import com.patient.treatment.documentation.gui.model.dto.PatientInterface;
+import com.patient.treatment.documentation.gui.model.dto.PatientMapper;
 import com.patient.treatment.documentation.gui.model.entites.Patient;
 import com.patient.treatment.documentation.gui.repository.PatientRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -32,15 +32,15 @@ public class PatientService {
         }
     }
 
-    public PatientInterface findByPesel(String pesel) {
+    public PatientMapper findByPesel(String pesel) {
         return patientRepository.findByPesel(DigestUtils.sha256Hex(pesel));
     }
 
-    public List<PatientInterface> findAllByNameAndSurname(String name, String surname) {
+    public List<PatientMapper> findAllByNameAndSurname(String name, String surname) {
         return patientRepository.findAllByNameAndSurnameOrderByName(name, surname);
     }
 
-    public List<PatientInterface> findAllPatientsOfTheDoctor(String doctorEmail) {
+    public List<PatientMapper> findAllPatientsOfTheDoctor(String doctorEmail) {
         return patientRepository.findAllByDocumentationsDoctorEmail(doctorEmail);
     }
 

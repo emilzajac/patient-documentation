@@ -1,5 +1,6 @@
-package com.patient.treatment.documentation.gui.model.dto;
+package com.patient.treatment.documentation.gui.model.dto.implementation;
 
+import com.patient.treatment.documentation.gui.model.dto.DoctorMapper;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DoctorDTO implements DoctorInterface {
+public class DoctorDTO implements DoctorMapper {
 
     private String name;
 

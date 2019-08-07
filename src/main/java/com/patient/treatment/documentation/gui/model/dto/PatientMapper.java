@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface PatientInterface {
+public interface PatientMapper {
 
     @Value("#{target.id}")
     Long getId();

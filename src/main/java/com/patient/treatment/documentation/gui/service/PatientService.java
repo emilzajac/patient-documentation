@@ -21,10 +21,6 @@ public class PatientService {
         this.patientRepository = patientRepository;
     }
 
-    public PatientInterface findByPesel(String pesel) {
-        return patientRepository.findByPesel(DigestUtils.sha256Hex(pesel));
-    }
-
     public Patient save(Patient patient) {
         if (patientRepository.findByPesel(patient.getPesel()) != null) {
             log.info("Patient with pesel {} already exist. Nothing will be done. ", patient.getName());
@@ -34,6 +30,14 @@ public class PatientService {
             patient.setPesel(encryptedPesel);
             return patientRepository.save(patient);
         }
+    }
+
+    public PatientInterface findByPesel(String pesel) {
+        return patientRepository.findByPesel(DigestUtils.sha256Hex(pesel));
+    }
+
+    public List<PatientInterface> findAllByNameAndSurname(String name, String surname) {
+        return patientRepository.findAllByNameAndSurnameOrderByName(name, surname);
     }
 
     public List<PatientInterface> findAllPatientsOfTheDoctor(String doctorEmail) {

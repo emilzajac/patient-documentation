@@ -44,10 +44,4 @@ public class PatientDTO implements PatientInterface {
 
     private List<Documentation> documentations;
 
-    @Override
-    public String toString() {
-        return "";
-    }
-
-
 }

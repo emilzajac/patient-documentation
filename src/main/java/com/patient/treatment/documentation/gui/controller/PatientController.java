@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/patient")
+@RequestMapping("/api/patients")
 public class PatientController {
 
     private final PatientService patientService;
@@ -32,9 +32,14 @@ public class PatientController {
         return ResponseEntity.ok(patientService.findByPesel(pesel));
     }
 
-    @GetMapping(value = "doctor/{email}")
+    @GetMapping(value = "/doctor/{email}")
     public ResponseEntity findAllPatientsOfTheDoctor(@PathVariable String email) {
         return ResponseEntity.ok(patientService.findAllPatientsOfTheDoctor(email));
+    }
+
+    @GetMapping(value = "/{name}/{surname}")
+    public ResponseEntity findAllPatientsByNameAndSurname(@PathVariable String name, @PathVariable String surname) {
+        return ResponseEntity.ok(patientService.findAllByNameAndSurname(name, surname));
     }
 
 }

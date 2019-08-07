@@ -2,20 +2,20 @@ package com.patient.treatment.documentation.gui.model.dto;
 
 public interface DoctorInterface {
 
-    public String getName();
+    String getName();
 
-    public void setName(String name);
+    void setName(String name);
 
-    public String getSurname();
+    String getSurname();
 
-    public void setSurname(String surname);
+    void setSurname(String surname);
 
-    public String getEmail();
+    String getEmail();
 
-    public void setEmail(String email);
+    void setEmail(String email);
 
-    public String getPassword();
+    String getPassword();
 
-    public void setPassword(String password);
+    void setPassword(String password);
 
 }

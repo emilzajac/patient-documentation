@@ -10,52 +10,52 @@ import java.util.List;
 public interface PatientInterface {
 
     @Value("#{target.id}")
-    public Long getId();
+    Long getId();
 
-    public void setId(Long id);
+    void setId(Long id);
 
-    public String getName();
+    String getName();
 
-    public void setName(String name);
+    void setName(String name);
 
-    public String getSurname();
+    String getSurname();
 
-    public void setSurname(String surname);
+    void setSurname(String surname);
 
-    public String getPesel();
+    String getPesel();
 
-    public void setPesel(String pesel);
+    void setPesel(String pesel);
 
-    public String getCity();
+    String getCity();
 
-    public void setCity(String city);
+    void setCity(String city);
 
-    public String getStreet();
+    String getStreet();
 
-    public void setStreet(String street);
+    void setStreet(String street);
 
-    public String getHouseNumber();
+    String getHouseNumber();
 
-    public void setHouseNumber(String houseNumber);
+    void setHouseNumber(String houseNumber);
 
-    public String getPostCode();
+    String getPostCode();
 
-    public void setPostCode(String postCode);
+    void setPostCode(String postCode);
 
-    public SexEnum getSexEnum();
+    SexEnum getSexEnum();
 
-    public void setSexEnum(SexEnum sexEnum);
+    void setSexEnum(SexEnum sexEnum);
 
-    public LocalDateTime getDateOfBirth();
+    LocalDateTime getDateOfBirth();
 
-    public void setDateOfBirth(LocalDateTime dateOfBirth);
+    void setDateOfBirth(LocalDateTime dateOfBirth);
 
-    public String getPhoneNumber();
+    String getPhoneNumber();
 
-    public void setPhoneNumber(String phoneNumber);
+    void setPhoneNumber(String phoneNumber);
 
-    public List<Documentation> getDocumentations();
+    List<Documentation> getDocumentations();
 
-    public void setDocumentations(List<Documentation> documentations);
+    void setDocumentations(List<Documentation> documentations);
 
 }

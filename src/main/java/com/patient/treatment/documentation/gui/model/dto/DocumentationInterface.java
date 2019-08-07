@@ -5,32 +5,32 @@ import com.patient.treatment.documentation.gui.model.entites.Patient;
 
 public interface DocumentationInterface {
 
-    public String getInterview();
+    String getInterview();
 
-    public void setInterview(String interview);
+    void setInterview(String interview);
 
-    public String getPhysicalExamination();
+    String getPhysicalExamination();
 
-    public void setPhysicalExamination(String physicalExamination);
+    void setPhysicalExamination(String physicalExamination);
 
-    public String getDiagnosisOfTheDisease();
+    String getDiagnosisOfTheDisease();
 
-    public void setDiagnosisOfTheDisease(String diagnosisOfTheDisease);
+    void setDiagnosisOfTheDisease(String diagnosisOfTheDisease);
 
-    public String getRecommendations();
+    String getRecommendations();
 
-    public void setRecommendations(String recommendations);
+    void setRecommendations(String recommendations);
 
-    public String getMedicines();
+    String getMedicines();
 
-    public void setMedicines(String medicines);
+    void setMedicines(String medicines);
 
-    public Doctor getDoctor();
+    Doctor getDoctor();
 
-    public void setDoctor(Doctor doctor);
+    void setDoctor(Doctor doctor);
 
-    public Patient getPatient();
+    Patient getPatient();
 
-    public void setPatient(Patient patient);
+    void setPatient(Patient patient);
 
 }

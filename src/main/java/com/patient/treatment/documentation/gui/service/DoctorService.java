@@ -22,10 +22,6 @@ public class DoctorService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public DoctorInterface findByEmail(String email) {
-        return doctorRepository.findByEmail(email);
-    }
-
     public Doctor createDoctor(Doctor doctor) {
         if (doctorRepository.findByEmail(doctor.getEmail()) != null) {
             log.info("Doctor with email {} already exist. Nothing will be done. ", doctor.getName());
@@ -35,6 +31,10 @@ public class DoctorService {
             doctor.setPassword(encryptedPassword);
             return doctorRepository.save(doctor);
         }
+    }
+
+    public DoctorInterface findByEmail(String email) {
+        return doctorRepository.findByEmail(email);
     }
 
 }

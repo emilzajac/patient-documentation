@@ -1,8 +1,8 @@
 package com.patient.treatment.documentation.gui.model.dto.implementation;
 
 import com.patient.treatment.documentation.gui.model.dto.DocumentationMapper;
-import com.patient.treatment.documentation.gui.model.entites.Doctor;
 import com.patient.treatment.documentation.gui.model.entites.Patient;
+import com.patient.treatment.documentation.gui.model.entites.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,7 +26,7 @@ public class DocumentationDTO implements DocumentationMapper {
 
     private String medicines;
 
-    private Doctor doctor;
+    private User user;
 
     private Patient patient;
 

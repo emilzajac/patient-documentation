@@ -1,7 +1,7 @@
 package com.patient.treatment.documentation.gui.model.dto;
 
-import com.patient.treatment.documentation.gui.model.entites.Doctor;
 import com.patient.treatment.documentation.gui.model.entites.Patient;
+import com.patient.treatment.documentation.gui.model.entites.User;
 
 public interface DocumentationMapper {
 
@@ -25,9 +25,9 @@ public interface DocumentationMapper {
 
     void setMedicines(String medicines);
 
-    Doctor getDoctor();
+    User getUser();
 
-    void setDoctor(Doctor doctor);
+    void setUser(User user);
 
     Patient getPatient();
 

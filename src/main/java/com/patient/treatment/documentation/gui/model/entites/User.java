@@ -18,7 +18,7 @@ import javax.validation.constraints.Email;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Doctor {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

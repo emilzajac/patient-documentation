@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.model.dto;
 
-public interface DoctorMapper {
+public interface UserMapper {
 
     String getName();
 

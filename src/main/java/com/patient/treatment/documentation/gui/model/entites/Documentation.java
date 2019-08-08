@@ -40,7 +40,7 @@ public class Documentation {
     private String medicines;
 
     @OneToOne
-    private Doctor doctor;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "patient_id")

@@ -1,7 +1,7 @@
 package com.patient.treatment.documentation.gui.controller;
 
-import com.patient.treatment.documentation.gui.model.entites.Doctor;
-import com.patient.treatment.documentation.gui.service.DoctorService;
+import com.patient.treatment.documentation.gui.model.entites.User;
+import com.patient.treatment.documentation.gui.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,24 +12,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/doctors")
-public class DoctorController {
+@RequestMapping("/api/users")
+public class UserController {
 
-    final DoctorService doctorService;
+    final UserService userService;
 
     @Autowired
-    public DoctorController(DoctorService doctorService) {
-        this.doctorService = doctorService;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @PutMapping
-    public ResponseEntity create(@RequestBody Doctor doctor) {
-        return ResponseEntity.ok(doctorService.createDoctor(doctor));
+    public ResponseEntity create(@RequestBody User user) {
+        return ResponseEntity.ok(userService.createUser(user));
     }
 
     @GetMapping(value = "/{email}")
     public ResponseEntity find(@PathVariable String email) {
-        return ResponseEntity.ok(doctorService.findByEmail(email));
+        return ResponseEntity.ok(userService.findByEmail(email));
     }
 
 }

@@ -10,6 +10,4 @@ public interface DocumentationRepository extends JpaRepository<Documentation, Lo
 
     DocumentationMapper findAllByPatientPesel(String pesel);
 
-    DocumentationMapper findAllByDoctorEmail(String email);
-
 }

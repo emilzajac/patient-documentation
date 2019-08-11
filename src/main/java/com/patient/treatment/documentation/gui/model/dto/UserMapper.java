@@ -1,5 +1,9 @@
 package com.patient.treatment.documentation.gui.model.dto;
 
+import com.patient.treatment.documentation.gui.model.entites.UserRole;
+
+import java.util.Set;
+
 public interface UserMapper {
 
     String getName();
@@ -17,5 +21,9 @@ public interface UserMapper {
     String getPassword();
 
     void setPassword(String password);
+
+    Set<UserRole> getUserRoles();
+
+    void setUserRoles(Set<UserRole> userRoles);
 
 }

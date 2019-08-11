@@ -1,12 +1,11 @@
 package com.patient.treatment.documentation.gui.model.entites;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.patient.treatment.documentation.gui.model.enumy.SexEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.CascadeType;
@@ -20,9 +19,7 @@ import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@EqualsAndHashCode
-@Getter
-@Setter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -58,6 +55,7 @@ public class Patient {
     private String phoneNumber;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Documentation> documentations;
 
 }

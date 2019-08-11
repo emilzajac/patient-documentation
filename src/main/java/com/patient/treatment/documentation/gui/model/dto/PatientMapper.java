@@ -2,17 +2,11 @@ package com.patient.treatment.documentation.gui.model.dto;
 
 import com.patient.treatment.documentation.gui.model.entites.Documentation;
 import com.patient.treatment.documentation.gui.model.enumy.SexEnum;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface PatientMapper {
-
-    @Value("#{target.id}")
-    Long getId();
-
-    void setId(Long id);
 
     String getName();
 

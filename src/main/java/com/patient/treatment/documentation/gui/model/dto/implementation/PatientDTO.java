@@ -21,8 +21,6 @@ import java.util.List;
 @AllArgsConstructor
 public class PatientDTO implements PatientMapper {
 
-    private Long id;
-
     private String name;
 
     private String surname;

@@ -41,7 +41,7 @@ public class PatientService {
     }
 
     public List<PatientMapper> findAllPatientsOfTheDoctor(String doctorEmail) {
-        return patientRepository.findAllByDocumentationsDoctorEmail(doctorEmail);
+        return patientRepository.findAllByDocumentationsUserEmail(doctorEmail);
     }
 
 }

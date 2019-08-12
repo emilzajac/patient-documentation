@@ -1,6 +1,5 @@
-package com.patient.treatment.documentation.gui.model.dto.implementation;
+package com.patient.treatment.documentation.gui.model.dto;
 
-import com.patient.treatment.documentation.gui.model.dto.PatientMapper;
 import com.patient.treatment.documentation.gui.model.entites.Documentation;
 import com.patient.treatment.documentation.gui.model.enumy.SexEnum;
 import lombok.AllArgsConstructor;
@@ -19,7 +18,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PatientDTO implements PatientMapper {
+public class PatientDto {
 
     private String name;
 

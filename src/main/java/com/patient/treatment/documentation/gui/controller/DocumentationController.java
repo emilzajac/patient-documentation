@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.controller;
 
-import com.patient.treatment.documentation.gui.model.entites.Documentation;
+import com.patient.treatment.documentation.gui.model.dto.DocumentationDto;
 import com.patient.treatment.documentation.gui.service.DocumentationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class DocumentationController {
     }
 
     @PutMapping
-    public ResponseEntity save(@RequestBody Documentation documentation) {
+    public ResponseEntity save(@RequestBody DocumentationDto documentation) {
         return ResponseEntity.ok(documentationService.save(documentation));
     }
 

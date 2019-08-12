@@ -1,4 +1,4 @@
-package com.patient.treatment.documentation.gui.model.dto;
+package com.patient.treatment.documentation.gui.model.projections;
 
 import com.patient.treatment.documentation.gui.model.entites.Documentation;
 import com.patient.treatment.documentation.gui.model.enumy.SexEnum;
@@ -6,7 +6,11 @@ import com.patient.treatment.documentation.gui.model.enumy.SexEnum;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface PatientMapper {
+public interface PatientProjection {
+
+    Long getId();
+
+    void setId(Long id);
 
     String getName();
 

@@ -1,9 +1,13 @@
-package com.patient.treatment.documentation.gui.model.dto;
+package com.patient.treatment.documentation.gui.model.projections;
 
 import com.patient.treatment.documentation.gui.model.entites.Patient;
 import com.patient.treatment.documentation.gui.model.entites.User;
 
-public interface DocumentationMapper {
+public interface DocumentationProjection {
+
+    Long getId();
+
+    void setId(Long id);
 
     String getInterview();
 

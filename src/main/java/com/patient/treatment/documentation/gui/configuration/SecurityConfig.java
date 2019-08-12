@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.configuration;
 
-import com.patient.treatment.documentation.gui.service.UserPrincipalDetailService;
+import com.patient.treatment.documentation.gui.service.security.UserPrincipalDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.controller;
 
-import com.patient.treatment.documentation.gui.model.entites.User;
+import com.patient.treatment.documentation.gui.model.dto.UserDto;
 import com.patient.treatment.documentation.gui.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity create(@RequestBody User user) {
+    public ResponseEntity create(@RequestBody UserDto user) {
         return ResponseEntity.ok(userService.createUser(user));
     }
 

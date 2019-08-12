@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.controller;
 
-import com.patient.treatment.documentation.gui.model.entites.Patient;
+import com.patient.treatment.documentation.gui.model.dto.PatientDto;
 import com.patient.treatment.documentation.gui.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class PatientController {
     }
 
     @PutMapping
-    public ResponseEntity save(@RequestBody Patient patient) {
+    public ResponseEntity save(@RequestBody PatientDto patient) {
         return ResponseEntity.ok(patientService.save(patient));
     }
 

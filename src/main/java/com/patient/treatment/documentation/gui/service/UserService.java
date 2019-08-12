@@ -1,7 +1,9 @@
 package com.patient.treatment.documentation.gui.service;
 
-import com.patient.treatment.documentation.gui.model.dto.UserMapper;
+import com.patient.treatment.documentation.gui.model.dto.UserDto;
+import com.patient.treatment.documentation.gui.model.dto.mappers.UserDtoMapper;
 import com.patient.treatment.documentation.gui.model.entites.User;
+import com.patient.treatment.documentation.gui.model.projections.UserProjection;
 import com.patient.treatment.documentation.gui.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +24,18 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User createUser(User user) {
+    public User createUser(UserDto user) {
         if (userRepository.findByEmail(user.getEmail()) != null) {
             log.info("User with email {} already exist. Nothing will be done. ", user.getName());
             return new User();
         } else {
             String encryptedPassword = passwordEncoder.encode(user.getPassword());
             user.setPassword(encryptedPassword);
-            return userRepository.save(user);
+            return userRepository.save(UserDtoMapper.userDtoToUserEntity(user));
         }
     }
 
-    public UserMapper findByEmail(String email) {
+    public UserProjection findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 

@@ -1,7 +1,9 @@
 package com.patient.treatment.documentation.gui.service;
 
-import com.patient.treatment.documentation.gui.model.dto.DocumentationMapper;
+import com.patient.treatment.documentation.gui.model.dto.DocumentationDto;
+import com.patient.treatment.documentation.gui.model.dto.mappers.DocumentationDtoMapper;
 import com.patient.treatment.documentation.gui.model.entites.Documentation;
+import com.patient.treatment.documentation.gui.model.projections.DocumentationProjection;
 import com.patient.treatment.documentation.gui.repository.DocumentationRepository;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +19,11 @@ public class DocumentationService {
         this.documentationRepository = documentationRepository;
     }
 
-    public Documentation save(Documentation documentation) {
-        return documentationRepository.save(documentation);
+    public Documentation save(DocumentationDto documentation) {
+        return documentationRepository.save(DocumentationDtoMapper.documentationDtoToDocumentationEntity(documentation));
     }
 
-    public DocumentationMapper findByPatientPesel(String pesel) {
+    public DocumentationProjection findByPatientPesel(String pesel) {
         return documentationRepository.findAllByPatientPesel(DigestUtils.sha256Hex(pesel));
     }
 

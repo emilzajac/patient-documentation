@@ -1,4 +1,4 @@
-package com.patient.treatment.documentation.gui.service;
+package com.patient.treatment.documentation.gui.service.security;
 
 import com.patient.treatment.documentation.gui.model.entites.User;
 import com.patient.treatment.documentation.gui.model.security.UserPrincipal;

@@ -1,6 +1,5 @@
-package com.patient.treatment.documentation.gui.model.dto.implementation;
+package com.patient.treatment.documentation.gui.model.dto;
 
-import com.patient.treatment.documentation.gui.model.dto.UserMapper;
 import com.patient.treatment.documentation.gui.model.entites.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,9 +14,11 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO implements UserMapper {
+public class UserDto {
 
     private String name;
+
+    private String username;
 
     private String surname;
 

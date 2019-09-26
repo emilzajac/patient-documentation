@@ -1,0 +1,16 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div>
+      <h3 class="nav-link">Patient documentation</h3>
+    </div>
+    <ul class="navbar-nav navbar-collapse justify-content-end">
+      <li>
+        <a *ngIf="isLoggedIn"
+          href="/logout"
+          class="nav-link"
+          (click)=handleLogout()>Logout
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>

@@ -10,6 +10,7 @@ import {HttpInterceptorService} from "./service/http-interceptor.service";
 import {HelloWorldComponent} from './hello-world/hello-world.component';
 import {MenuComponent} from './menu/menu.component';
 import {LogoutComponent} from './logout/logout.component';
+import {RegistrationComponent} from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {LogoutComponent} from './logout/logout.component';
     HelloWorldComponent,
     MenuComponent,
     LogoutComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,

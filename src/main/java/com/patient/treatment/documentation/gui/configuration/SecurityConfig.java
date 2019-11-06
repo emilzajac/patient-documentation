@@ -8,12 +8,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final BCryptPasswordEncoder passwordEncoder;
     private final UserPrincipalDetailService userPrincipalDetailService;
+
+    private static final String[] PERMITTED_LINKS = {"/api/login"};
 
     @Autowired
     public SecurityConfig(BCryptPasswordEncoder passwordEncoder,
@@ -24,20 +27,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity.httpBasic().and().authorizeRequests()
-//                .antMatchers("/index.html", "/", "/home", "/login").permitAll()
-//                .antMatchers(HttpMethod.PUT, "/api/users").permitAll()
-//                .anyRequest().authenticated()
-//                .and().csrf().disable().headers().frameOptions().disable();
-
-        httpSecurity.cors()
-                .and().httpBasic()
-                .and().authorizeRequests().antMatchers("/index.html", "/", "/home", "/login").permitAll()
-//                .antMatchers(HttpMethod.PUT, "/api/users").permitAll()
-                .anyRequest().authenticated()
-//                .and().csrf().disable();
-                .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-
+        httpSecurity.cors().and()
+                .authorizeRequests()
+                .antMatchers(PERMITTED_LINKS).permitAll()
+                .antMatchers("/api/**").authenticated()
+                .anyRequest().permitAll()
+                .and().csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .and()
+                .logout().permitAll()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/api/user/logout", "POST"))
+                .and()
+                .formLogin().loginPage("/login");
     }
 
     @Autowired
@@ -45,6 +46,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userPrincipalDetailService).passwordEncoder(passwordEncoder);
 //        auth.inMemoryAuthentication().withUser("u").password(passwordEncoder.encode("u")).roles("ADMINISTRATOR"); //This is in-memory authentication
     }
-
 
 }

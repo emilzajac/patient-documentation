@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.model.security;
 
-import com.patient.treatment.documentation.gui.model.entites.User;
+import com.patient.treatment.documentation.gui.model.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,23 +18,23 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class UserPrincipal implements UserDetails {
 
-    private User user;
+    private UserDto userDto;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.user.getUserRoles().stream()
+        return this.userDto.getUserRoles().stream()
                 .map(userRole -> new SimpleGrantedAuthority(userRole.getRoleEnum().name()))
                 .collect(Collectors.toSet());
     }
 
     @Override
     public String getPassword() {
-        return this.user.getPassword();
+        return this.userDto.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return this.user.getUsername();
+        return this.userDto.getUsername();
     }
 
     @Override

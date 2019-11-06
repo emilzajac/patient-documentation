@@ -12,7 +12,7 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     PatientProjection findByPesel(String pesel);
 
-    List<PatientProjection> findAllByNameAndSurnameOrderByName(String name, String surname);
+    List<PatientProjection> findAllByFirstNameAndLastNameOrderByFirstName(String firstName, String lastName);
 
     List<PatientProjection> findAllByDocumentationsUserEmail(String doctorEmail);
 

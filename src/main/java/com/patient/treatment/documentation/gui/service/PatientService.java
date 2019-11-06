@@ -1,7 +1,7 @@
 package com.patient.treatment.documentation.gui.service;
 
 import com.patient.treatment.documentation.gui.model.dto.PatientDto;
-import com.patient.treatment.documentation.gui.model.dto.mappers.PatientDtoMapper;
+import com.patient.treatment.documentation.gui.model.dto.mappers.PatientMapper;
 import com.patient.treatment.documentation.gui.model.entites.Patient;
 import com.patient.treatment.documentation.gui.model.projections.PatientProjection;
 import com.patient.treatment.documentation.gui.repository.PatientRepository;
@@ -17,20 +17,22 @@ import java.util.List;
 public class PatientService {
 
     private final PatientRepository patientRepository;
+    private final PatientMapper patientMapper;
 
     @Autowired
-    public PatientService(PatientRepository patientRepository) {
+    public PatientService(PatientRepository patientRepository, PatientMapper patientMapper) {
         this.patientRepository = patientRepository;
+        this.patientMapper = patientMapper;
     }
 
     public Patient save(PatientDto patient) {
         if (patientRepository.findByPesel(patient.getPesel()) != null) {
-            log.info("Patient with pesel {} already exist. Nothing will be done. ", patient.getName());
+            log.info("Patient with pesel {} already exist. Nothing will be done. ", patient.getFirstName());
             return new Patient();
         } else {
             String encryptedPesel = DigestUtils.sha256Hex(patient.getPesel());
             patient.setPesel(encryptedPesel);
-            return patientRepository.save(PatientDtoMapper.patientDtoToPatientEntity(patient));
+            return patientRepository.save(patientMapper.toPatientEntity(patient));
         }
     }
 
@@ -38,8 +40,8 @@ public class PatientService {
         return patientRepository.findByPesel(DigestUtils.sha256Hex(pesel));
     }
 
-    public List<PatientProjection> findAllByNameAndSurname(String name, String surname) {
-        return patientRepository.findAllByNameAndSurnameOrderByName(name, surname);
+    public List<PatientProjection> findAllByFirstNameAndLastNameOrderByFirstName(String name, String surname) {
+        return patientRepository.findAllByFirstNameAndLastNameOrderByFirstName(name, surname);
     }
 
     public List<PatientProjection> findAllPatientsOfTheDoctor(String doctorEmail) {

@@ -37,9 +37,9 @@ public class PatientController {
         return ResponseEntity.ok(patientService.findAllPatientsOfTheDoctor(email));
     }
 
-    @GetMapping(value = "/{name}/{surname}")
-    public ResponseEntity findAllPatientsByNameAndSurname(@PathVariable String name, @PathVariable String surname) {
-        return ResponseEntity.ok(patientService.findAllByNameAndSurname(name, surname));
+    @GetMapping(value = "/{firstName}/{lastName}")
+    public ResponseEntity findAllPatientsByNameAndSurname(@PathVariable String firstName, @PathVariable String lastName) {
+        return ResponseEntity.ok(patientService.findAllByFirstNameAndLastNameOrderByFirstName(firstName, lastName));
     }
 
 }

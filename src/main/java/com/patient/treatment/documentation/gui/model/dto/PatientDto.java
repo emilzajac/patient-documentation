@@ -20,9 +20,9 @@ import java.util.List;
 @AllArgsConstructor
 public class PatientDto {
 
-    private String name;
+    private String firstName;
 
-    private String surname;
+    private String lastName;
 
     private String pesel;
 

@@ -10,17 +10,17 @@ public interface UserProjection {
 
     void setId(Long id);
 
-    String getName();
+    String getFirstName();
 
-    void setName(String name);
+    void setFirstName(String name);
 
     String getUsername();
 
     void setUsername(String name);
 
-    String getSurname();
+    String getLastName();
 
-    void setSurname(String surname);
+    void setLastName(String surname);
 
     String getEmail();
 

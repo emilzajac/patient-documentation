@@ -31,10 +31,10 @@ public class Patient {
     private Long id;
 
     @NonNull
-    private String name;
+    private String firstName;
 
     @NonNull
-    private String surname;
+    private String lastName;
 
     @NonNull
     private String pesel;

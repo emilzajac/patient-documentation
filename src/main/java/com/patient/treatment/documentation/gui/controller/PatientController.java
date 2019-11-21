@@ -1,12 +1,12 @@
 package com.patient.treatment.documentation.gui.controller;
 
-import com.patient.treatment.documentation.gui.model.dto.PatientDto;
+import com.patient.treatment.documentation.gui.model.form.PatientForm;
 import com.patient.treatment.documentation.gui.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +22,9 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    @PutMapping
-    public ResponseEntity save(@RequestBody PatientDto patient) {
-        return ResponseEntity.ok(patientService.save(patient));
+    @PostMapping
+    public ResponseEntity create(@RequestBody PatientForm patientForm) {
+        return ResponseEntity.ok(patientService.create(patientForm));
     }
 
     @GetMapping(value = "/{pesel}")

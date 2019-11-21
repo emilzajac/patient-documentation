@@ -1,7 +1,7 @@
 package com.patient.treatment.documentation.gui.model.entites;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.patient.treatment.documentation.gui.model.enumy.SexEnum;
+import com.patient.treatment.documentation.gui.model.enumy.GenderEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -48,9 +48,9 @@ public class Patient {
     private String postCode;
 
     @Enumerated(EnumType.STRING)
-    private SexEnum sexEnum;
+    private GenderEnum gender;
 
-    private LocalDateTime dateOfBirth;
+    private LocalDate dateOfBirth;
 
     private String phoneNumber;
 

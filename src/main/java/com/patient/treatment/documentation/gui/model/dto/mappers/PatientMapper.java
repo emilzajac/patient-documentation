@@ -2,6 +2,7 @@ package com.patient.treatment.documentation.gui.model.dto.mappers;
 
 import com.patient.treatment.documentation.gui.model.dto.PatientDto;
 import com.patient.treatment.documentation.gui.model.entites.Patient;
+import com.patient.treatment.documentation.gui.model.form.PatientForm;
 import com.patient.treatment.documentation.gui.model.projections.PatientProjection;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -13,5 +14,9 @@ public interface PatientMapper {
 
     @Mapping(target = "id", ignore = true)
     Patient toPatientEntity(PatientDto patientDto);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "documentations", ignore = true)
+    Patient toPatientEntity(PatientForm patientForm);
 
 }

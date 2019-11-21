@@ -2,6 +2,7 @@ package com.patient.treatment.documentation.gui.model.dto.mappers;
 
 import com.patient.treatment.documentation.gui.model.dto.UserDto;
 import com.patient.treatment.documentation.gui.model.entites.User;
+import com.patient.treatment.documentation.gui.model.form.UserRegisterForm;
 import com.patient.treatment.documentation.gui.model.projections.UserProjection;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -13,5 +14,9 @@ public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)
     User toUserEntity(UserDto userDto);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "userRoles", ignore = true)
+    User toUserEntity(UserRegisterForm userRegisterForm);
 
 }

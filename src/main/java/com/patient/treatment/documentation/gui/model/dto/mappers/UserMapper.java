@@ -13,10 +13,12 @@ public interface UserMapper {
     UserDto toUserDTO(UserProjection userProjection);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "patients", ignore = true)
     User toUserEntity(UserDto userDto);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "userRoles", ignore = true)
+    @Mapping(target = "patients", ignore = true)
     User toUserEntity(UserRegisterForm userRegisterForm);
 
 }

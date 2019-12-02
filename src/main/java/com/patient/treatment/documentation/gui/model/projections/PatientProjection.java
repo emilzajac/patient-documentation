@@ -1,10 +1,12 @@
 package com.patient.treatment.documentation.gui.model.projections;
 
 import com.patient.treatment.documentation.gui.model.entites.Documentation;
+import com.patient.treatment.documentation.gui.model.entites.User;
 import com.patient.treatment.documentation.gui.model.enumy.GenderEnum;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 public interface PatientProjection {
 
@@ -51,6 +53,10 @@ public interface PatientProjection {
     String getPhoneNumber();
 
     void setPhoneNumber(String phoneNumber);
+
+    Set<User> getDoctors();
+
+    void setDoctors(Set<User> doctors);
 
     List<Documentation> getDocumentations();
 

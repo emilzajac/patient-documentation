@@ -14,6 +14,6 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     List<PatientProjection> findAllByFirstNameAndLastNameOrderByFirstName(String firstName, String lastName);
 
-    List<PatientProjection> findAllByDocumentationsUserEmail(String doctorEmail);
+    List<PatientProjection> findAllByDoctorsUsername(String doctorUserName);
 
 }

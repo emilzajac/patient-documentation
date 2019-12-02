@@ -1,8 +1,8 @@
 package com.patient.treatment.documentation.gui.service;
 
-import com.patient.treatment.documentation.gui.model.dto.DocumentationDto;
 import com.patient.treatment.documentation.gui.model.dto.mappers.DocumentationMapper;
 import com.patient.treatment.documentation.gui.model.entites.Documentation;
+import com.patient.treatment.documentation.gui.model.form.DocumentationForm;
 import com.patient.treatment.documentation.gui.model.projections.DocumentationProjection;
 import com.patient.treatment.documentation.gui.repository.DocumentationRepository;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -21,8 +21,8 @@ public class DocumentationService {
         this.documentationMapper = documentationMapper;
     }
 
-    public Documentation save(DocumentationDto documentation) {
-        return documentationRepository.save(documentationMapper.toDocumentationEntity(documentation));
+    public Documentation create(DocumentationForm documentationForm) {
+        return documentationRepository.save(documentationMapper.toDocumentationEntity(documentationForm));
     }
 
     public DocumentationProjection findByPatientPesel(String pesel) {

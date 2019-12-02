@@ -1,6 +1,7 @@
 package com.patient.treatment.documentation.gui.controller;
 
 import com.patient.treatment.documentation.gui.model.form.PatientForm;
+import com.patient.treatment.documentation.gui.model.projections.PatientProjection;
 import com.patient.treatment.documentation.gui.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/patients")
@@ -32,9 +35,9 @@ public class PatientController {
         return ResponseEntity.ok(patientService.findByPesel(pesel));
     }
 
-    @GetMapping(value = "/doctor/{email}")
-    public ResponseEntity findAllPatientsOfTheDoctor(@PathVariable String email) {
-        return ResponseEntity.ok(patientService.findAllPatientsOfTheDoctor(email));
+    @GetMapping(value = "/doctor/{username}")
+    public ResponseEntity<List<PatientProjection>> findAllPatientsOfTheDoctor(@PathVariable String username) {
+        return ResponseEntity.ok(patientService.findAllPatientsOfTheDoctor(username));
     }
 
     @GetMapping(value = "/{firstName}/{lastName}")

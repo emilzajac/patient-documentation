@@ -15,9 +15,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -53,6 +58,13 @@ public class Patient {
     private LocalDate dateOfBirth;
 
     private String phoneNumber;
+
+    @ManyToMany
+    @JoinTable(name = "patient_doctor",
+            joinColumns = {@JoinColumn(name = "patient_id")},
+            inverseJoinColumns = {@JoinColumn(name = "doctor_id")}
+    )
+    private Set<User> doctors = new HashSet<>();
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     @JsonIgnore

@@ -3,6 +3,8 @@ package com.patient.treatment.documentation.gui.model.projections;
 import com.patient.treatment.documentation.gui.model.entites.Patient;
 import com.patient.treatment.documentation.gui.model.entites.User;
 
+import java.time.LocalDateTime;
+
 public interface DocumentationProjection {
 
     Long getId();
@@ -28,6 +30,10 @@ public interface DocumentationProjection {
     String getMedicines();
 
     void setMedicines(String medicines);
+
+    LocalDateTime getCreationDate();
+
+    void setCreationDate(LocalDateTime creationDate);
 
     User getUser();
 

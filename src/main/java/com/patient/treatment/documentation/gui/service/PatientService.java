@@ -1,5 +1,6 @@
 package com.patient.treatment.documentation.gui.service;
 
+import com.patient.treatment.documentation.gui.model.dto.PatientDto;
 import com.patient.treatment.documentation.gui.model.dto.mappers.PatientMapper;
 import com.patient.treatment.documentation.gui.model.entites.Patient;
 import com.patient.treatment.documentation.gui.model.form.PatientForm;
@@ -36,8 +37,8 @@ public class PatientService {
         }
     }
 
-    public PatientProjection findByPesel(String pesel) {
-        return patientRepository.findByPesel(encryptDecryptService.encrypt(pesel));
+    public PatientDto findByPesel(String pesel) {
+        return patientMapper.toPatientDto(patientRepository.findByPesel(encryptDecryptService.encrypt(pesel)));
     }
 
     public List<PatientProjection> findAllByFirstNameAndLastNameOrderByFirstName(String firstName, String lastName) {

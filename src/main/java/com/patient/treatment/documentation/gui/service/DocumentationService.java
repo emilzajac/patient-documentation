@@ -9,6 +9,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class DocumentationService {
 
@@ -22,7 +24,9 @@ public class DocumentationService {
     }
 
     public Documentation create(DocumentationForm documentationForm) {
-        return documentationRepository.save(documentationMapper.toDocumentationEntity(documentationForm));
+        Documentation documentationEntity = documentationMapper.toDocumentationEntity(documentationForm);
+        documentationEntity.setCreationDate(LocalDateTime.now());
+        return documentationRepository.save(documentationEntity);
     }
 
     public DocumentationProjection findByPatientPesel(String pesel) {

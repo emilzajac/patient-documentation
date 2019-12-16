@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Builder
@@ -24,6 +26,8 @@ public class DocumentationDto {
     private String recommendations;
 
     private String medicines;
+
+    private LocalDateTime creationDate;
 
     private User user;
 

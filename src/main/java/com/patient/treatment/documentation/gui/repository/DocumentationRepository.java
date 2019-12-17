@@ -5,9 +5,11 @@ import com.patient.treatment.documentation.gui.model.projections.DocumentationPr
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface DocumentationRepository extends JpaRepository<Documentation, Long> {
 
-    DocumentationProjection findAllByPatientPesel(String pesel);
+    List<DocumentationProjection> findAllByPatient_IdOrPatient_PeselOrderByCreationDateDesc(long id, String pesel);
 
 }

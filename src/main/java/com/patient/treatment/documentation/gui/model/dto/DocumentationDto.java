@@ -17,6 +17,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class DocumentationDto {
 
+    private long id;
+
     private String interview;
 
     private String physicalExamination;

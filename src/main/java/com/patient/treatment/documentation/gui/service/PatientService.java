@@ -37,6 +37,15 @@ public class PatientService {
         }
     }
 
+    public Patient update(PatientDto patientDto) {
+        patientDto.setPesel(encryptDecryptService.encrypt(patientDto.getPesel()));
+        return patientRepository.save(patientMapper.toPatientEntity(patientDto));
+    }
+
+    public void deleteById(long id) {
+        patientRepository.deleteById(id);
+    }
+
     public PatientDto findByPesel(String pesel) {
         return patientMapper.toPatientDto(patientRepository.findByPesel(encryptDecryptService.encrypt(pesel)));
     }

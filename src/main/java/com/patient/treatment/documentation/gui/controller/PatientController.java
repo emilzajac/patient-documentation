@@ -1,13 +1,17 @@
 package com.patient.treatment.documentation.gui.controller;
 
+import com.patient.treatment.documentation.gui.model.dto.PatientDto;
+import com.patient.treatment.documentation.gui.model.entites.Patient;
 import com.patient.treatment.documentation.gui.model.form.PatientForm;
 import com.patient.treatment.documentation.gui.model.projections.PatientProjection;
 import com.patient.treatment.documentation.gui.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +37,17 @@ public class PatientController {
     @GetMapping(value = "/{pesel}")
     public ResponseEntity find(@PathVariable String pesel) {
         return ResponseEntity.ok(patientService.findByPesel(pesel));
+    }
+
+    @PutMapping
+    public ResponseEntity<Patient> update(@RequestBody PatientDto patientDto) {
+        return ResponseEntity.ok(patientService.update(patientDto));
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> find(@PathVariable long id) {
+        patientService.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping(value = "/doctor/{username}")

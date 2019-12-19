@@ -10,7 +10,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface DocumentationMapper {
 
-    @Mapping(target = "id", ignore = true)
     Documentation toDocumentationEntity(DocumentationDto documentationDto);
 
     @Mapping(target = "id", ignore = true)

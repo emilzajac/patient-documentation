@@ -1,27 +1,16 @@
-<app-menu></app-menu>
-
-<div class="container">
-  <hr>
+<div class="container p-4">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <div class="card">
         <header class="card-header">
-          <h4 class="card-title mt-2">Wybierz</h4>
+          <h4 class="card-title mt-lg-2">Wybierz</h4>
         </header>
         <article class="card-body">
-
-          <a [routerLink]="['patient/add']" class="nav-link">
-            <span>Dodaj pacjenta</span>
-          </a>
-
-          <a [routerLink]="['patient/list']" class="nav-link">
-            <span>Lista pacjentow</span>
-          </a>
-
-          <a [routerLink]="['documentation/add']" class="nav-link">
-            <span>Dodaj dokumentacje</span>
-          </a>
-
+          <div class="col">
+            <a class="btn btn-default btn-lg btn-custom-lg btn-block" [routerLink]="['patient/add']">Dodaj pacjenta</a>
+            <a class="btn btn-default btn-lg btn-custom-lg btn-block" [routerLink]="['patient/list']">Lista pacjentow</a>
+            <a class="btn btn-default btn-lg btn-custom-lg btn-block" [routerLink]="['documentation/add']">Dodaj Wpis</a>
+          </div>
         </article>
       </div>
     </div>

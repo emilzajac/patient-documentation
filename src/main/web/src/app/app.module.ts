@@ -4,36 +4,83 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {HttpInterceptorService} from "./service/http-interceptor.service";
-import {HelloWorldComponent} from './hello-world/hello-world.component';
 import {MenuComponent} from './menu/menu.component';
 import {LogoutComponent} from './logout/logout.component';
-import {RegistrationComponent} from './registration/registration.component';
+import {RegisterComponent} from './register/register.component';
+import {AlertComponent} from './alert/alert.component';
+import {ErrorInterceptor} from "./interceptor/error.interceptor";
+import {HomeComponent} from './home/home.component';
+import {AuthenticationInterceptor} from "./interceptor/authentication.interceptor";
+import {PatientAddComponent} from './patient/patient-add/patient-add.component';
+import {PatientListComponent} from './patient/patient-list/patient-list.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatSelectModule,
+  MatSortModule,
+  MatTableModule,
+  MatToolbarModule
+} from "@angular/material";
+import {DocumentationAddComponent} from './documentation/documentation-add/documentation-add.component';
+import {DocumentationPatientListComponent} from './documentation/documentation-patient-list/documentation-patient-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HelloWorldComponent,
     MenuComponent,
     LogoutComponent,
-    RegistrationComponent,
+    RegisterComponent,
+    AlertComponent,
+    HomeComponent,
+    PatientAddComponent,
+    PatientListComponent,
+    DocumentationAddComponent,
+    DocumentationPatientListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatListModule,
+    MatToolbarModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressBarModule,
+    MatIconModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: HttpInterceptorService,
+      useClass: ErrorInterceptor,
+      multi: true
+    },
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
       multi: true
     }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

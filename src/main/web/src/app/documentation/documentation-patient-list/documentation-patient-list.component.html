@@ -1,0 +1,162 @@
+<app-menu></app-menu>
+<div>
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    <strong>Error!</strong> {{errorMessage}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="alert alert-success" *ngIf="infoMessage">
+    <strong>Successful!</strong> {{infoMessage}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div *ngIf="dataSource">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col col-xs-6">
+            <h3 class="panel-title">Lista dokumentacji</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+          <ng-container matColumnDef="ID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Id Dokumentacji</th>
+            <td mat-cell *matCellDef="let element">{{element.id}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Wywiad">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Wywiad</th>
+            <td mat-cell *matCellDef="let element">{{element.interview}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Badanie_przedmiotowe">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Badanie przedmiotowe</th>
+            <td mat-cell *matCellDef="let element">{{element.physicalExamination}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Rozpoznanie">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Rozpoznanie</th>
+            <td mat-cell *matCellDef="let element">{{element.diagnosisOfTheDisease}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Zalecenia">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Zalecenia</th>
+            <td mat-cell *matCellDef="let element">{{element.recommendations}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Leki">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Leki</th>
+            <td mat-cell *matCellDef="let element">{{element.medicines}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Data_Wpisu">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Data Wpisu</th>
+            <td mat-cell *matCellDef="let element">{{element.creationDate}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Akcje</th>
+            <td mat-cell *matCellDef="let element" style="width:140px;">
+              <a class="btn btn-warning custom-btn-link" (click)="editDocumentationRequest(element)"><em class="glyphicon glyphicon-pencil"></em></a>
+              <a class="btn btn-danger custom-btn-link" (click)="deleteDocumentationRequest(element)"><em class="glyphicon glyphicon-trash"></em></a>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="documentationEditModal" #documentationEditModal tabIndex="-1" role="dialog" aria-labelledby="documentationModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form name="form-documentation-update" (ngSubmit)="form.form.valid && editDocumentation()" #form="ngForm" novalidate>
+        <div class="modal-header">
+          <h5 class="modal-title">Edycja Dokumentacji</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-danger" *ngIf="errorMessage">
+            <strong>Error!</strong> {{errorMessage}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="col form-group">
+            <label for="pesel">Pesel pacjenta</label>
+            <input type="text" class="form-control" id="pesel" name="pesel"
+                   *ngIf="selectedDocumentation.patient as patient"
+                   [(ngModel)]="patient.pesel" #pesel="ngModel" readonly required/>
+          </div>
+          <div class="col form-group">
+            <label for="interview">Wywiad lekarski</label>
+            <textarea type="text" class="form-control" id="interview" name="interview"
+                      [(ngModel)]="selectedDocumentation.interview" #interview="ngModel" rows="3" required></textarea>
+          </div>
+          <div class="col form-group">
+            <label for="physicalExamination">Badanie przedmiotowe</label>
+            <textarea type="text" class="form-control" id="physicalExamination" name="physicalExamination"
+                      [(ngModel)]="selectedDocumentation.physicalExamination" #physicalExamination="ngModel" rows="3" required></textarea>
+          </div>
+          <div class="col form-group">
+            <label for="diagnosisOfTheDisease">Rozpoznanie</label>
+            <textarea type="text" class="form-control" id="diagnosisOfTheDisease" name="diagnosisOfTheDisease"
+                      [(ngModel)]="selectedDocumentation.physicalExamination" #diagnosisOfTheDisease="ngModel" rows="3" required></textarea>
+          </div>
+          <div class="col form-group">
+            <label for="medicines">Leki i dawkowanie</label>
+            <textarea type="text" class="form-control" id="medicines" name="medicines"
+                      [(ngModel)]="selectedDocumentation.medicines" #medicines="ngModel" rows="3" required></textarea>
+          </div>
+          <div class="col form-group">
+            <label for="recommendations">Zalecenia</label>
+            <textarea type="text" class="form-control" id="recommendations" name="recommendations"
+                      [(ngModel)]="selectedDocumentation.recommendations" #recommendations="ngModel" rows="3" required></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="deleteDocumentationModal" #deleteDocumentationModal tabIndex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Potwierdzenie</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        Na pewno chcesz usunąć dokumentacje pacjenta:
+        <strong>{{selectedDocumentation.patient?.firstName + " " + selectedDocumentation.patient?.lastName}}</strong>
+        z datą wpisu: <strong>{{selectedDocumentation.creationDate}}</strong>?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj operacje</button>
+        <button type="button" class="btn btn-danger" (click)="deleteDocumentation()">Usuń</button>
+      </div>
+    </div>
+  </div>
+</div>

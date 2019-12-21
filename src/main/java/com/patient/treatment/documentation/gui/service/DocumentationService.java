@@ -10,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +29,6 @@ public class DocumentationService {
 
     public Documentation create(DocumentationForm documentationForm) {
         Documentation documentationEntity = documentationMapper.toDocumentationEntity(documentationForm);
-        documentationEntity.setCreationDate(LocalDateTime.now());
         return documentationRepository.save(documentationEntity);
     }
 

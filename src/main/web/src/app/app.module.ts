@@ -32,6 +32,11 @@ import {
 } from "@angular/material";
 import {DocumentationAddComponent} from './documentation/documentation-add/documentation-add.component';
 import {DocumentationPatientListComponent} from './documentation/documentation-patient-list/documentation-patient-list.component';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import {defineLocale} from 'ngx-bootstrap/chronos';
+import {plLocale} from 'ngx-bootstrap/locale';
+
+defineLocale('pl', plLocale);
 
 @NgModule({
   declarations: [
@@ -65,7 +70,8 @@ import {DocumentationPatientListComponent} from './documentation/documentation-p
     MatPaginatorModule,
     MatSortModule,
     MatProgressBarModule,
-    MatIconModule
+    MatIconModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     {

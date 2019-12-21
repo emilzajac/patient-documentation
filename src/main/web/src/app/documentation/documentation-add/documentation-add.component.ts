@@ -7,6 +7,7 @@ import {first} from "rxjs/operators";
 import {DocumentationService} from "../../service/documentation.service";
 import {PatientInterface} from "../../model/patient-interface";
 import {PatientService} from "../../service/patient.service";
+import {BsLocaleService} from "ngx-bootstrap/datepicker";
 
 @Component({
   selector: 'app-documentation-add',
@@ -24,7 +25,10 @@ export class DocumentationAddComponent implements OnInit {
               private documentationService: DocumentationService,
               private patientService: PatientService,
               private authenticationService: AuthenticationService,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private bsLocaleService: BsLocaleService) {
+    bsLocaleService.use('pl');
+
   }
 
   ngOnInit() {
@@ -34,7 +38,8 @@ export class DocumentationAddComponent implements OnInit {
       physicalExamination: [''],
       diagnosisOfTheDisease: [''],
       recommendations: [''],
-      medicines: [''],
+      creationDate: [''],
+      medicines: ['', Validators.required],
       patient: [''],
       user: [this.authenticationService.currentUserValue]
     });
@@ -62,6 +67,8 @@ export class DocumentationAddComponent implements OnInit {
 
     this.documentationAddForm.value.patient = this.patient;
 
+    this.documentationAddForm.value.creationDate = this.onChangeCreationDate(this.documentationAddForm.value.creationDate);
+
     this.alertService.clear();
 
     if (this.documentationAddForm.invalid) {
@@ -84,6 +91,10 @@ export class DocumentationAddComponent implements OnInit {
 
   get field() {
     return this.documentationAddForm.controls;
+  }
+
+  onChangeCreationDate(date: Date) {
+    return date.toLocaleDateString() + 'T' + date.toLocaleTimeString();
   }
 
 }

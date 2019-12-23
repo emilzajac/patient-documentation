@@ -28,7 +28,6 @@ export class DocumentationAddComponent implements OnInit {
               private alertService: AlertService,
               private bsLocaleService: BsLocaleService) {
     bsLocaleService.use('pl');
-
   }
 
   ngOnInit() {
@@ -67,8 +66,6 @@ export class DocumentationAddComponent implements OnInit {
 
     this.documentationAddForm.value.patient = this.patient;
 
-    this.documentationAddForm.value.creationDate = this.onChangeCreationDate(this.documentationAddForm.value.creationDate);
-
     this.alertService.clear();
 
     if (this.documentationAddForm.invalid) {
@@ -91,10 +88,6 @@ export class DocumentationAddComponent implements OnInit {
 
   get field() {
     return this.documentationAddForm.controls;
-  }
-
-  onChangeCreationDate(date: Date) {
-    return date.toLocaleDateString() + 'T' + date.toLocaleTimeString();
   }
 
 }

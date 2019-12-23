@@ -15,7 +15,7 @@ export interface DocumentationFormInterface {
 
   medicines: string;
 
-  creationDate: string;
+  creationDate: Date;
 
   user: UserMT;
 
@@ -30,7 +30,7 @@ export class Documentation implements DocumentationFormInterface {
   medicines: string;
   physicalExamination: string;
   recommendations: string;
-  creationDate: string;
+  creationDate: Date;
   patient: PatientInterface;
   user: UserMT;
 }

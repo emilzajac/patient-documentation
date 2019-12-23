@@ -15,7 +15,7 @@ export interface DocumentationListInterface {
 
   medicines: string;
 
-  creationDate: string;
+  creationDate: Date;
 
   user: UserMT;
 

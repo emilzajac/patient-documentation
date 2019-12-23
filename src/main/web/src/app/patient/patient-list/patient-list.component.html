@@ -138,7 +138,7 @@
           </div>
           <div class="form-group" [ngClass]="{ 'has-error': form.submitted && !dateOfBirth.valid }">
             <label for="dateOfBirth">Data urodzenia</label>
-            <input type="text" class="form-control input-text-custom" id="dateOfBirth" name="dateOfBirth"
+            <input type="date" class="form-control input-text-custom" id="dateOfBirth" name="dateOfBirth"
                    [(ngModel)]="selectedPatient.dateOfBirth" #dateOfBirth="ngModel" required/>
             <div *ngIf="form.submitted && !dateOfBirth.valid" class="help-block">Data jest wymagana.</div>
           </div>

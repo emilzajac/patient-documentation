@@ -5,6 +5,7 @@ import {AlertService} from "../../service/alert.service";
 import {AuthenticationService} from "../../service/authentication.service";
 import {first} from "rxjs/operators";
 import {PatientService} from "../../service/patient.service";
+import {BsLocaleService} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-add-patient',
@@ -20,7 +21,9 @@ export class PatientAddComponent implements OnInit {
               private router: Router,
               private patientService: PatientService,
               private authenticationService: AuthenticationService,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private bsLocaleService: BsLocaleService) {
+    bsLocaleService.use('pl');
   }
 
   ngOnInit() {

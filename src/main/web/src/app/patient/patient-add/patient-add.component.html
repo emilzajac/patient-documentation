@@ -35,8 +35,15 @@
             </div>
             <div class="form-group">
               <label for="dateOfBirth">Data urodzenia</label>
-              <input id="dateOfBirth" type="date" formControlName="dateOfBirth" class="form-control"
-                     [ngClass]="{ 'is-invalid': submitted && field.dateOfBirth.errors }">
+              <input
+                placeholder="dd.mm.rrrr"
+                autocomplete="off"
+                id="dateOfBirth"
+                class="form-control"
+                bsDatepicker
+                formControlName="dateOfBirth"
+                [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-blue'}"
+                [ngClass]="{ 'is-invalid': submitted && field.dateOfBirth.errors }">
               <div *ngIf="submitted && field.dateOfBirth.errors" class="invalid-feedback">
                 <div *ngIf="field.dateOfBirth.errors.required">Data jest wymagana</div>
               </div>

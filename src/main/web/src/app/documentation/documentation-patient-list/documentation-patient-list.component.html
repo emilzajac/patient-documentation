@@ -104,6 +104,11 @@
                    [(ngModel)]="patient.pesel" #pesel="ngModel" readonly required/>
           </div>
           <div class="col form-group">
+            <label for="creationDate">Data Wpisu</label>
+            <input type="text" class="form-control" id="creationDate" name="creationDate"
+                   [(ngModel)]="selectedDocumentation.creationDate" required/>
+          </div>
+          <div class="col form-group">
             <label for="interview">Wywiad lekarski</label>
             <textarea type="text" class="form-control" id="interview" name="interview"
                       [(ngModel)]="selectedDocumentation.interview" #interview="ngModel" rows="3" required></textarea>

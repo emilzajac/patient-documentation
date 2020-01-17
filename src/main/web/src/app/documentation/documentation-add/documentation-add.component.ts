@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../service/authentication.service";
 import {AlertService} from "../../service/alert.service";
 import {first} from "rxjs/operators";
@@ -19,6 +19,7 @@ export class DocumentationAddComponent implements OnInit {
   loading = false;
   submitted = false;
   patient: PatientInterface;
+  pesel: string;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -26,13 +27,24 @@ export class DocumentationAddComponent implements OnInit {
               private patientService: PatientService,
               private authenticationService: AuthenticationService,
               private alertService: AlertService,
-              private bsLocaleService: BsLocaleService) {
+              private bsLocaleService: BsLocaleService,
+              private route: ActivatedRoute) {
     bsLocaleService.use('pl');
   }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(value => {
+      if (value.has('pesel')) {
+        this.pesel = value.get('pesel');
+        this.patientService.getByPesel(this.pesel)
+          .subscribe((patient) => {
+            this.patient = patient;
+          })
+      }
+    });
+
     this.documentationAddForm = this.formBuilder.group({
-      pesel: ['', Validators.required],
+      pesel: [this.pesel, Validators.required],
       interview: [''],
       physicalExamination: [''],
       diagnosisOfTheDisease: [''],

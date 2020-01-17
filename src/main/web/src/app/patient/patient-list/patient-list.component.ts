@@ -46,7 +46,6 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     }
   }
 
-
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
@@ -102,4 +101,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     this.router.navigate([`/documentation/list/${patient.id}`])
   }
 
+  addDocumentation(pesel: string) {
+    this.router.navigate([`/documentation/add/${pesel}`])
+  }
 }

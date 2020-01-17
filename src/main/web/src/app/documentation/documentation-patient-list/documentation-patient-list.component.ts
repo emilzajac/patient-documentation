@@ -15,7 +15,6 @@ declare var $: any;
 })
 export class DocumentationPatientListComponent implements OnInit {
 
-
   displayedColumns: string[] = ['ID', 'Wywiad', 'Rozpoznanie', 'Badanie_przedmiotowe', 'Zalecenia', 'Leki', 'Data_Wpisu', 'action'];
   dataSource: MatTableDataSource<DocumentationListInterface> = new MatTableDataSource();
   documentations: DocumentationListInterface[];

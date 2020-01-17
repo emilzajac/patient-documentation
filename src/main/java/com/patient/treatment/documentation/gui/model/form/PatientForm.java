@@ -35,8 +35,6 @@ public class PatientForm {
 
     private LocalDate dateOfBirth;
 
-    private String phoneNumber;
-
     private User doctor;
 
 }

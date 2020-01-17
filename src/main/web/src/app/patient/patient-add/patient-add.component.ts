@@ -32,7 +32,6 @@ export class PatientAddComponent implements OnInit {
       lastName: ['', Validators.required],
       pesel: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
-      phoneNumber: [''],
       gender: ['MALE', Validators.required],
       city: ['', Validators.required],
       street: ['', Validators.required],

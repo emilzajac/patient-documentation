@@ -57,8 +57,6 @@ public class Patient {
 
     private LocalDate dateOfBirth;
 
-    private String phoneNumber;
-
     @ManyToMany
     @JoinTable(name = "patient_doctor",
             joinColumns = {@JoinColumn(name = "patient_id")},

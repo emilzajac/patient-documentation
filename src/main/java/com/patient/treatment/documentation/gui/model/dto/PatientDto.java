@@ -42,8 +42,6 @@ public class PatientDto {
 
     private LocalDate dateOfBirth;
 
-    private String phoneNumber;
-
     private Set<User> doctors;
 
     private List<Documentation> documentations;

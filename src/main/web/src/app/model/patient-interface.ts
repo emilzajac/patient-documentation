@@ -23,8 +23,6 @@ export interface PatientInterface {
 
   dateOfBirth: Date;
 
-  phoneNumber: string;
-
   doctor: User;
 
 }
@@ -38,7 +36,6 @@ export class Patient implements PatientInterface {
   street: string;
   houseNumber: string;
   postCode: string;
-  phoneNumber: string;
   gender: GenderEnum;
   dateOfBirth: Date;
   doctor: User;

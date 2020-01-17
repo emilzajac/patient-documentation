@@ -22,6 +22,4 @@ export interface PatientListInterface {
 
   dateOfBirth: Date;
 
-  phoneNumber: string;
-
 }

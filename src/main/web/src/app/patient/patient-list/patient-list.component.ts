@@ -17,7 +17,7 @@ declare var $: any;
 })
 export class PatientListComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['ID', 'Imie', 'Nazwisko', 'pesel', 'Data_Urodzenia', 'Płeć', 'Miasto', 'Kod_pocztowy', 'Ulica', 'Numer_domu', 'Telefon', 'action'];
+  displayedColumns: string[] = ['ID', 'Imie', 'Nazwisko', 'pesel', 'Data_Urodzenia', 'Płeć', 'Miasto', 'Kod_pocztowy', 'Ulica', 'Numer_domu', 'action'];
   dataSource: MatTableDataSource<PatientListInterface> = new MatTableDataSource();
   patients: PatientListInterface[];
   selectedPatient: Patient = new Patient();

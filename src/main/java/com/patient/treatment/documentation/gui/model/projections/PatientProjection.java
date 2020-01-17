@@ -50,10 +50,6 @@ public interface PatientProjection {
 
     void setDateOfBirth(LocalDate dateOfBirth);
 
-    String getPhoneNumber();
-
-    void setPhoneNumber(String phoneNumber);
-
     Set<User> getDoctors();
 
     void setDoctors(Set<User> doctors);

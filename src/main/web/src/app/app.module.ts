@@ -35,6 +35,7 @@ import {DocumentationPatientListComponent} from './documentation/documentation-p
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {defineLocale} from 'ngx-bootstrap/chronos';
 import {plLocale} from 'ngx-bootstrap/locale';
+import {FooterComponent} from './footer/footer.component';
 
 defineLocale('pl', plLocale);
 
@@ -51,6 +52,7 @@ defineLocale('pl', plLocale);
     PatientListComponent,
     DocumentationAddComponent,
     DocumentationPatientListComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

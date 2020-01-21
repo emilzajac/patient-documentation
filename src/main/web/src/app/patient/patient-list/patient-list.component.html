@@ -13,193 +13,202 @@
   </div>
 
   <div *ngIf="dataSource">
-    <div class="card">
-      <div class="card-header">
-        <div class="row">
-          <div class="col col-xs-6">
-            <h3 class="panel-title">Wszyscy Pacjenci</h3>
+    <div class="container p-4 col-12">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <h4 class="panel-title">Wszyscy Pacjenci</h4>
+              </div>
+            </div>
+
+            <div class="align-self-center">
+              <table mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="ID">
+                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Id Pacjenta</th>
+                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.id}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Imie">
+                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Imie</th>
+                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.firstName}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Nazwisko">
+                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Nazwisko</th>
+                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.lastName}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="pesel">
+                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Pesel</th>
+                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.pesel}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Data_Urodzenia">
+                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Data Urodzenia</th>
+                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.dateOfBirth}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Płeć">
+                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Płeć</th>
+                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{onTransformGenderToDisplay(element.gender)}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Miasto">
+                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Miasto</th>
+                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.city}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Kod_pocztowy">
+                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Kod pocztowy</th>
+                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.postCode}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Ulica">
+                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Ulica</th>
+                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.street}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Numer_domu">
+                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Numer domu</th>
+                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.houseNumber}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Akcje</th>
+                  <td class="d-flex flex-row pl-3 pr-3" mat-cell *matCellDef="let element">
+                    <a class="btn btn-info custom-btn-link m-1 align-self-center" (click)="editPatientRequest(element)"><em>Edytuj</em></a>
+                    <a class="btn btn-danger custom-btn-link m-1 align-self-center" (click)="deletePatientRequest(element)"><em>Usuń</em></a>
+                    <div class="dropdown">
+                      <a class="btn m-1 d-flex justify-content-center btn-hover" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                         aria-expanded="false">
+                        <mat-icon>more_vert</mat-icon>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" type="button" (click)="documentationPatientRequest(element)"><em>Lista dokumentacji</em></a>
+                        <a class="dropdown-item" type="button" (click)="addDocumentation(element.pesel)"><em>Dodaj dokumentacje</em></a>
+                      </div>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" matSort>
-
-          <ng-container matColumnDef="ID">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Id Pacjenta</th>
-            <td mat-cell *matCellDef="let element">{{element.id}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="Imie">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Imie</th>
-            <td mat-cell *matCellDef="let element">{{element.firstName}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="Nazwisko">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwisko</th>
-            <td mat-cell *matCellDef="let element">{{element.lastName}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="pesel">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Pesel</th>
-            <td mat-cell *matCellDef="let element">{{element.pesel}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="Data_Urodzenia">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Data Urodzenia</th>
-            <td mat-cell *matCellDef="let element">{{element.dateOfBirth}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="Płeć">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Płeć</th>
-            <td mat-cell *matCellDef="let element">{{onTransformGenderToDisplay(element.gender)}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="Miasto">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Miasto</th>
-            <td mat-cell *matCellDef="let element">{{element.city}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="Kod_pocztowy">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Kod pocztowy</th>
-            <td mat-cell *matCellDef="let element">{{element.postCode}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="Ulica">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ulica</th>
-            <td mat-cell *matCellDef="let element">{{element.street}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="Numer_domu">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Numer domu</th>
-            <td mat-cell *matCellDef="let element">{{element.houseNumber}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Akcje</th>
-            <td mat-cell *matCellDef="let element">
-              <a class="btn btn-info custom-btn-link m-1" (click)="editPatientRequest(element)"><em>Edytuj</em></a>
-              <a class="btn btn-info custom-btn-link m-1" (click)="documentationPatientRequest(element)"><em>Lista Dokumentacji</em></a>
-              <a class="btn btn-info custom-btn-link m-1" (click)="addDocumentation(element.pesel)"><em>Dodaj dokumentacje</em></a>
-              <a class="btn btn-danger custom-btn-link m-1" (click)="deletePatientRequest(element)"><em>Usuń</em></a>
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-        <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
       </div>
     </div>
-  </div>
-</div>
 
 
-<div class="modal fade" id="patientModal" #patientModal tabIndex="-1" role="dialog" aria-labelledby="patientModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <form name="form-patient-update" (ngSubmit)="form.form.valid && editPatient()" #form="ngForm" novalidate>
-        <div class="modal-header">
-          <h5 class="modal-title">Edycja Pacjenta</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-            aria-hidden="true">&times;</span></button>
+    <div class="modal fade" id="patientModal" #patientModal tabIndex="-1" role="dialog" aria-labelledby="patientModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form name="form-patient-update" (ngSubmit)="form.form.valid && editPatient()" #form="ngForm" novalidate>
+            <div class="modal-header">
+              <h5 class="modal-title">Edycja Pacjenta</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-danger" *ngIf="errorMessage">
+                <strong>Error!</strong> {{errorMessage}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="form-row">
+                <div class="col form-group" [ngClass]="{ 'has-error': form.submitted && !firstname.valid }">
+                  <label for="firstname">Imie</label>
+                  <input type="text" class="form-control input-text-custom" id="firstname" name="firstname"
+                         [(ngModel)]="selectedPatient.firstName" #firstname="ngModel" required/>
+                  <div *ngIf="form.submitted && !firstname.valid" class="help-block">Imie jest wymagane</div>
+                </div>
+                <div class="col form-group" [ngClass]="{ 'has-error': form.submitted && !lastName.valid }">
+                  <label for="lastName">Nazwisko</label>
+                  <input type="text" class="form-control input-text-custom" id="lastName" name="lastName"
+                         [(ngModel)]="selectedPatient.lastName" #lastName="ngModel" required/>
+                  <div *ngIf="form.submitted && !lastName.valid" class="help-block">Nazwisko jest wymagane.</div>
+                </div>
+              </div>
+              <div class="form-group" [ngClass]="{ 'has-error': form.submitted && !pesel.valid }">
+                <label for="pesel">Pesel</label>
+                <input type="text" class="form-control input-text-custom" id="pesel" name="pesel"
+                       [(ngModel)]="selectedPatient.pesel" #pesel="ngModel" required/>
+                <div *ngIf="form.submitted && !pesel.valid" class="help-block">Pesel jest wymagany.</div>
+              </div>
+              <div class="form-group" [ngClass]="{ 'has-error': form.submitted && !dateOfBirth.valid }">
+                <label for="dateOfBirth">Data urodzenia</label>
+                <input type="date" class="form-control input-text-custom" id="dateOfBirth" name="dateOfBirth"
+                       [(ngModel)]="selectedPatient.dateOfBirth" #dateOfBirth="ngModel" required/>
+                <div *ngIf="form.submitted && !dateOfBirth.valid" class="help-block">Data jest wymagana.</div>
+              </div>
+              <div class="form-group">
+                <label class="form-check form-check-inline">
+                  <input id="male" class="form-check-input" type="radio" name="gender" value="MALE" [(ngModel)]="selectedPatient.gender">
+                  <span class="form-check-label">Mężczyzna</span>
+                </label>
+                <label class="form-check form-check-inline">
+                  <input id="female" class="form-check-input" type="radio" name="gender" value="FEMALE" [(ngModel)]="selectedPatient.gender">
+                  <span class="form-check-label">Kobieta</span>
+                </label>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6" [ngClass]="{ 'has-error': form.submitted && !city.valid }">
+                  <label for="city">Miasto</label>
+                  <input type="text" class="form-control input-text-custom" id="city" name="city"
+                         [(ngModel)]="selectedPatient.city" #city="ngModel" required/>
+                  <div *ngIf="form.submitted && !city.valid" class="help-block">Miasto jest wymagane.</div>
+                </div>
+                <div class="form-group col-md-6" [ngClass]="{ 'has-error': form.submitted && !street.valid }">
+                  <label for="street">Ulica</label>
+                  <input type="text" class="form-control input-text-custom" id="street" name="street"
+                         [(ngModel)]="selectedPatient.street" #street="ngModel" required/>
+                  <div *ngIf="form.submitted && !street.valid" class="help-block">Ulica jest wymagana.</div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group  col-md-6" [ngClass]="{ 'has-error': form.submitted && !houseNumber.valid }">
+                  <label for="houseNumber">Numer domu</label>
+                  <input type="text" class="form-control input-text-custom" id="houseNumber" name="houseNumber"
+                         [(ngModel)]="selectedPatient.houseNumber" #houseNumber="ngModel" required/>
+                  <div *ngIf="form.submitted && !houseNumber.valid" class="help-block">Numer domu jest wymagany.</div>
+                </div>
+                <div class="form-group col-md-6" [ngClass]="{ 'has-error': form.submitted && !postCode.valid }">
+                  <label for="postCode">Kod pocztowy</label>
+                  <input type="text" class="form-control input-text-custom" id="postCode" name="postCode"
+                         [(ngModel)]="selectedPatient.postCode" #postCode="ngModel" required/>
+                  <div *ngIf="form.submitted && !postCode.valid" class="help-block">Kod pocztowy jest wymagany.</div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+              <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+            </div>
+          </form>
         </div>
-        <div class="modal-body">
-          <div class="alert alert-danger" *ngIf="errorMessage">
-            <strong>Error!</strong> {{errorMessage}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="form-row">
-            <div class="col form-group" [ngClass]="{ 'has-error': form.submitted && !firstname.valid }">
-              <label for="firstname">Imie</label>
-              <input type="text" class="form-control input-text-custom" id="firstname" name="firstname"
-                     [(ngModel)]="selectedPatient.firstName" #firstname="ngModel" required/>
-              <div *ngIf="form.submitted && !firstname.valid" class="help-block">Imie jest wymagane</div>
-            </div>
-            <div class="col form-group" [ngClass]="{ 'has-error': form.submitted && !lastName.valid }">
-              <label for="lastName">Nazwisko</label>
-              <input type="text" class="form-control input-text-custom" id="lastName" name="lastName"
-                     [(ngModel)]="selectedPatient.lastName" #lastName="ngModel" required/>
-              <div *ngIf="form.submitted && !lastName.valid" class="help-block">Nazwisko jest wymagane.</div>
-            </div>
-          </div>
-          <div class="form-group" [ngClass]="{ 'has-error': form.submitted && !pesel.valid }">
-            <label for="pesel">Pesel</label>
-            <input type="text" class="form-control input-text-custom" id="pesel" name="pesel"
-                   [(ngModel)]="selectedPatient.pesel" #pesel="ngModel" required/>
-            <div *ngIf="form.submitted && !pesel.valid" class="help-block">Pesel jest wymagany.</div>
-          </div>
-          <div class="form-group" [ngClass]="{ 'has-error': form.submitted && !dateOfBirth.valid }">
-            <label for="dateOfBirth">Data urodzenia</label>
-            <input type="date" class="form-control input-text-custom" id="dateOfBirth" name="dateOfBirth"
-                   [(ngModel)]="selectedPatient.dateOfBirth" #dateOfBirth="ngModel" required/>
-            <div *ngIf="form.submitted && !dateOfBirth.valid" class="help-block">Data jest wymagana.</div>
-          </div>
-          <div class="form-group">
-            <label class="form-check form-check-inline">
-              <input id="male" class="form-check-input" type="radio" name="gender" value="MALE" [(ngModel)]="selectedPatient.gender">
-              <span class="form-check-label">Mężczyzna</span>
-            </label>
-            <label class="form-check form-check-inline">
-              <input id="female" class="form-check-input" type="radio" name="gender" value="FEMALE" [(ngModel)]="selectedPatient.gender">
-              <span class="form-check-label">Kobieta</span>
-            </label>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6" [ngClass]="{ 'has-error': form.submitted && !city.valid }">
-              <label for="city">Miasto</label>
-              <input type="text" class="form-control input-text-custom" id="city" name="city"
-                     [(ngModel)]="selectedPatient.city" #city="ngModel" required/>
-              <div *ngIf="form.submitted && !city.valid" class="help-block">Miasto jest wymagane.</div>
-            </div>
-            <div class="form-group col-md-6" [ngClass]="{ 'has-error': form.submitted && !street.valid }">
-              <label for="street">Ulica</label>
-              <input type="text" class="form-control input-text-custom" id="street" name="street"
-                     [(ngModel)]="selectedPatient.street" #street="ngModel" required/>
-              <div *ngIf="form.submitted && !street.valid" class="help-block">Ulica jest wymagana.</div>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group  col-md-6" [ngClass]="{ 'has-error': form.submitted && !houseNumber.valid }">
-              <label for="houseNumber">Numer domu</label>
-              <input type="text" class="form-control input-text-custom" id="houseNumber" name="houseNumber"
-                     [(ngModel)]="selectedPatient.houseNumber" #houseNumber="ngModel" required/>
-              <div *ngIf="form.submitted && !houseNumber.valid" class="help-block">Numer domu jest wymagany.</div>
-            </div>
-            <div class="form-group col-md-6" [ngClass]="{ 'has-error': form.submitted && !postCode.valid }">
-              <label for="postCode">Kod pocztowy</label>
-              <input type="text" class="form-control input-text-custom" id="postCode" name="postCode"
-                     [(ngModel)]="selectedPatient.postCode" #postCode="ngModel" required/>
-              <div *ngIf="form.submitted && !postCode.valid" class="help-block">Kod pocztowy jest wymagany.</div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-          <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="deleteModal" #deleteModal tabIndex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Potwierdzenie</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-        Na pewno chcesz usunąć pacjenta: <strong>{{selectedPatient.firstName + " " + selectedPatient.lastName}}</strong>?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj operacje</button>
-        <button type="button" class="btn btn-danger" (click)="deletePatient()">Usuń</button>
       </div>
     </div>
-  </div>
-</div>
+
+    <div class="modal fade" id="deleteModal" #deleteModal tabIndex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Potwierdzenie</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            Na pewno chcesz usunąć pacjenta: <strong>{{selectedPatient.firstName + " " + selectedPatient.lastName}}</strong>?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj operacje</button>
+            <button type="button" class="btn btn-danger" (click)="deletePatient()">Usuń</button>
+          </div>
+        </div>
+      </div>
+    </div>

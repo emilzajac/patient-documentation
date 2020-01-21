@@ -36,6 +36,7 @@ import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {defineLocale} from 'ngx-bootstrap/chronos';
 import {plLocale} from 'ngx-bootstrap/locale';
 import {FooterComponent} from './footer/footer.component';
+import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
 
 defineLocale('pl', plLocale);
 
@@ -73,7 +74,8 @@ defineLocale('pl', plLocale);
     MatSortModule,
     MatProgressBarModule,
     MatIconModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    NgbDropdownModule
   ],
   providers: [
     {

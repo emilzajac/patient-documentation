@@ -23,60 +23,64 @@
               </div>
             </div>
 
-            <div class="align-self-center">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Szukaj">
+            </mat-form-field>
+
+            <div class="mat-elevation-z8">
               <table mat-table [dataSource]="dataSource" matSort>
                 <ng-container matColumnDef="ID">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Id Pacjenta</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.id}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.id}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Imie">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Imie</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.firstName}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Imie</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.firstName}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Nazwisko">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Nazwisko</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.lastName}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Nazwisko</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.lastName}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="pesel">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Pesel</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.pesel}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Pesel</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.pesel}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Data_Urodzenia">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Data Urodzenia</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.dateOfBirth}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Data Urodzenia</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.dateOfBirth}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Płeć">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Płeć</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{onTransformGenderToDisplay(element.gender)}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Płeć</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{onTransformGenderToDisplay(element.gender)}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Miasto">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Miasto</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.city}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Miasto</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.city}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Kod_pocztowy">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Kod pocztowy</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.postCode}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Kod pocztowy</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.postCode}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Ulica">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Ulica</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.street}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Ulica</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.street}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Numer_domu">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Numer domu</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.houseNumber}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Numer domu</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.houseNumber}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="action">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Akcje</th>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Akcje</th>
                   <td class="d-flex flex-row pl-3 pr-3" mat-cell *matCellDef="let element">
                     <a class="btn btn-info custom-btn-link m-1 align-self-center" (click)="editPatientRequest(element)"><em>Edytuj</em></a>
                     <a class="btn btn-danger custom-btn-link m-1 align-self-center" (click)="deletePatientRequest(element)"><em>Usuń</em></a>

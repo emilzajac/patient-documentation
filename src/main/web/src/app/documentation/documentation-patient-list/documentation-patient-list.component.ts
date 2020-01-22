@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {PatientService} from "../../service/patient.service";
 import {DocumentationService} from "../../service/documentation.service";
 import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
@@ -13,7 +13,7 @@ declare var $: any;
   templateUrl: './documentation-patient-list.component.html',
   styleUrls: ['./documentation-patient-list.component.scss']
 })
-export class DocumentationPatientListComponent implements OnInit {
+export class DocumentationPatientListComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['ID', 'Wywiad', 'Rozpoznanie', 'Badanie_przedmiotowe', 'Zalecenia', 'Leki', 'Data_Wpisu', 'action'];
   dataSource: MatTableDataSource<DocumentationListInterface> = new MatTableDataSource();
@@ -23,8 +23,8 @@ export class DocumentationPatientListComponent implements OnInit {
   errorMessage: string;
   infoMessage: string;
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(private patientService: PatientService,
               private documentationService: DocumentationService,
@@ -40,12 +40,23 @@ export class DocumentationPatientListComponent implements OnInit {
     this.getAllPatientDocumentation();
   }
 
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   private getAllPatientDocumentation() {
     this.documentationService.getAllPatientDocumentation(this.patientId, null)
       .subscribe((documentations: DocumentationListInterface[]) => {
         this.documentations = documentations;
         this.dataSource.data = documentations;
-        this.dataSource.sort = this.sort;
       });
   }
 

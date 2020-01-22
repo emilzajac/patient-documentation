@@ -23,47 +23,51 @@
               </div>
             </div>
 
-            <div class="align-self-center">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Szukaj">
+            </mat-form-field>
+
+            <div class="mat-elevation-z8">
               <table mat-table [dataSource]="dataSource" matSort>
 
                 <ng-container matColumnDef="ID">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Id Dokumentacji</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.id}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Lp.</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.id}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Wywiad">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Wywiad</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.interview}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Wywiad</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.interview}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Badanie_przedmiotowe">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Badanie przedmiotowe</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.physicalExamination}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Badanie przedmiotowe</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.physicalExamination}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Rozpoznanie">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Rozpoznanie</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.diagnosisOfTheDisease}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Rozpoznanie</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.diagnosisOfTheDisease}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Zalecenia">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Zalecenia</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.recommendations}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Zalecenia</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.recommendations}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Leki">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Leki</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.medicines}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Leki</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.medicines}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Data_Wpisu">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Data Wpisu</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">{{element.creationDate}}</td>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Data Wpisu</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.creationDate}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="action">
-                  <th class="pl-3 pr-3" mat-header-cell *matHeaderCellDef mat-sort-header>Akcje</th>
-                  <td class="pl-3 pr-3" mat-cell *matCellDef="let element">
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Akcje</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">
                     <a class="btn btn-info custom-btn-link m-1" (click)="editDocumentationRequest(element)"><em>Edytuj</em></a>
                     <a class="btn btn-danger custom-btn-link m-1" (click)="deleteDocumentationRequest(element)"><em>Usuń</em></a>
                   </td>

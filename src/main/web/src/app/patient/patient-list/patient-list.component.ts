@@ -24,8 +24,8 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   errorMessage: string;
   infoMessage: string;
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(private patientService: PatientService,
               private documentationService: DocumentationService,
@@ -38,6 +38,13 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     this.getAllPatientsOfDoctor();
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   onTransformGenderToDisplay(gender: string) {
     if (gender === 'MALE') {
       return 'MĘŻCZYZNA';
@@ -47,6 +54,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
@@ -55,7 +63,6 @@ export class PatientListComponent implements OnInit, AfterViewInit {
       .subscribe((patients: PatientListInterface[]) => {
         this.patients = patients;
         this.dataSource.data = patients;
-        this.dataSource.sort = this.sort;
       });
   }
 

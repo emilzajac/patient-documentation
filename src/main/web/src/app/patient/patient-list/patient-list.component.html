@@ -28,54 +28,54 @@
             </mat-form-field>
 
             <div class="mat-elevation-z8">
-              <table mat-table [dataSource]="dataSource" matSort>
+              <table mat-table [dataSource]="dataSource">
                 <ng-container matColumnDef="ID">
-                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Id</th>
                   <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.id}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Imie">
-                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Imie</th>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Imie</th>
                   <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.firstName}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Nazwisko">
-                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Nazwisko</th>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Nazwisko</th>
                   <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.lastName}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="pesel">
-                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Pesel</th>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Pesel</th>
                   <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.pesel}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Data_Urodzenia">
-                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Data Urodzenia</th>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Data Urodzenia</th>
                   <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.dateOfBirth}}</td>
                 </ng-container>
 
-                <ng-container matColumnDef="Płeć">
-                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Płeć</th>
+                <ng-container matColumnDef="Plec">
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Płeć</th>
                   <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{onTransformGenderToDisplay(element.gender)}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Miasto">
-                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Miasto</th>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Miasto</th>
                   <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.city}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Kod_pocztowy">
-                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Kod pocztowy</th>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Kod pocztowy</th>
                   <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.postCode}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Ulica">
-                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Ulica</th>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Ulica</th>
                   <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.street}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="Numer_domu">
-                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef mat-sort-header>Numer domu</th>
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Numer domu</th>
                   <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.houseNumber}}</td>
                 </ng-container>
 

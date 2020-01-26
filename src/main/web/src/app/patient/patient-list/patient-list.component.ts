@@ -5,7 +5,7 @@ import {UserService} from "../../service/user.service";
 import {AuthenticationService} from "../../service/authentication.service";
 import {Patient} from "../../model/patient-interface";
 import {PatientListInterface} from "./patient-list-interface";
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {Router} from "@angular/router";
 
 declare var $: any;
@@ -17,7 +17,7 @@ declare var $: any;
 })
 export class PatientListComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['ID', 'Imie', 'Nazwisko', 'pesel', 'Data_Urodzenia', 'Płeć', 'Miasto', 'Kod_pocztowy', 'Ulica', 'Numer_domu', 'action'];
+  displayedColumns: string[] = ['ID', 'Imie', 'Nazwisko', 'pesel', 'Data_Urodzenia', 'Plec', 'Miasto', 'Kod_pocztowy', 'Ulica', 'Numer_domu', 'action'];
   dataSource: MatTableDataSource<PatientListInterface> = new MatTableDataSource();
   patients: PatientListInterface[];
   selectedPatient: Patient = new Patient();
@@ -25,7 +25,6 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   infoMessage: string;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(private patientService: PatientService,
               private documentationService: DocumentationService,
@@ -54,7 +53,6 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 

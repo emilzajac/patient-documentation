@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {PatientService} from "../../service/patient.service";
 import {DocumentationService} from "../../service/documentation.service";
-import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import {MatPaginator, MatTableDataSource} from "@angular/material";
 import {DocumentationListInterface} from "../documentation-list-interface";
 import {Documentation} from "../../model/documentation-interface";
 import {ActivatedRoute} from "@angular/router";
@@ -24,8 +24,6 @@ export class DocumentationPatientListComponent implements OnInit, AfterViewInit 
   infoMessage: string;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
-
   constructor(private patientService: PatientService,
               private documentationService: DocumentationService,
               private route: ActivatedRoute) {
@@ -41,7 +39,6 @@ export class DocumentationPatientListComponent implements OnInit, AfterViewInit 
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 

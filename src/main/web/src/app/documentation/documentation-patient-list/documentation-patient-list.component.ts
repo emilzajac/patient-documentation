@@ -5,6 +5,7 @@ import {MatPaginator, MatTableDataSource} from "@angular/material";
 import {DocumentationListInterface} from "../documentation-list-interface";
 import {Documentation} from "../../model/documentation-interface";
 import {ActivatedRoute} from "@angular/router";
+import * as moment from 'moment';
 
 declare var $: any;
 
@@ -94,4 +95,9 @@ export class DocumentationPatientListComponent implements OnInit, AfterViewInit 
       this.errorMessage = 'Wystąpił nieoczekiwany błąd.';
     });
   }
+
+  onFormatDate(creationDate: Date) {
+    return moment(creationDate).locale('pl').format('LLL');
+  }
+
 }

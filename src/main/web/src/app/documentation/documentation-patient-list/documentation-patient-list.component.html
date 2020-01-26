@@ -62,7 +62,7 @@
 
                 <ng-container matColumnDef="Data_Wpisu">
                   <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Data Wpisu</th>
-                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.creationDate}}</td>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{onFormatDate(element.creationDate)}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="action">

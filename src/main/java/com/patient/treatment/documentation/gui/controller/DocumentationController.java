@@ -52,4 +52,9 @@ public class DocumentationController {
         return ResponseEntity.ok(documentationService.findByPatient(id, pesel));
     }
 
+    @GetMapping(value = "/{doctorUsername}")
+    public ResponseEntity<List<DocumentationProjection>> findByPatientByDoctorUsername(@PathVariable String doctorUsername) {
+        return ResponseEntity.ok(documentationService.findByPatientByDoctorUsername(doctorUsername));
+    }
+
 }

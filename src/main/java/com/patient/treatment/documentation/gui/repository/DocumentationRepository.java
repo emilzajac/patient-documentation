@@ -12,4 +12,6 @@ public interface DocumentationRepository extends JpaRepository<Documentation, Lo
 
     List<DocumentationProjection> findAllByPatient_IdOrPatient_PeselOrderByCreationDateDesc(long id, String pesel);
 
+    List<DocumentationProjection> findAllByPatient_Doctors_usernameOrderByCreationDateDesc(String doctorUsername);
+
 }

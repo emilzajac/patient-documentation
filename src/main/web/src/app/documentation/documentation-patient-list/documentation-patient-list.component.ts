@@ -21,7 +21,6 @@ export class DocumentationPatientListComponent implements OnInit, AfterViewInit 
   dataSource: MatTableDataSource<DocumentationListInterface> = new MatTableDataSource();
   documentations: DocumentationListInterface[];
   selectedDocumentation: Documentation = new Documentation();
-  patientId: string;
   errorMessage: string;
   infoMessage: string;
   documentationChangeForm: FormGroup;
@@ -37,10 +36,12 @@ export class DocumentationPatientListComponent implements OnInit, AfterViewInit 
   ngOnInit() {
     this.route.paramMap.subscribe(value => {
       if (value.has('patientId')) {
-        this.patientId = value.get('patientId');
+        this.getAllPatientDocumentationById(value.get('patientId'));
+      } else {
+        this.getAllPatientDocumentationByDoctorUsername(value.get('doctorUsername'))
       }
+
     });
-    this.getAllPatientDocumentation();
 
     this.documentationChangeForm = this.formBuilder.group({
       creationDate: ['']
@@ -58,8 +59,16 @@ export class DocumentationPatientListComponent implements OnInit, AfterViewInit 
     }
   }
 
-  private getAllPatientDocumentation() {
-    this.documentationService.getAllPatientDocumentation(this.patientId, null)
+  private getAllPatientDocumentationById(patientId: string) {
+    this.documentationService.getAllPatientDocumentation(patientId, null)
+      .subscribe((documentations: DocumentationListInterface[]) => {
+        this.documentations = documentations;
+        this.dataSource.data = documentations;
+      });
+  }
+
+  private getAllPatientDocumentationByDoctorUsername(username: string) {
+    this.documentationService.get(username)
       .subscribe((documentations: DocumentationListInterface[]) => {
         this.documentations = documentations;
         this.dataSource.data = documentations;

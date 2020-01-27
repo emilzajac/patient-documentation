@@ -30,4 +30,8 @@ export class MenuComponent implements OnInit {
   handleLogout() {
     this.authenticationService.logout();
   }
+
+  documentationListEvent() {
+    return `/documentation/list/${this.loggedUser.username}`;
+  }
 }

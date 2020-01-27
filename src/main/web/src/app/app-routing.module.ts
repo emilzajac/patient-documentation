@@ -19,6 +19,7 @@ const routes: Routes = [
   {path: 'patient/list', component: PatientListComponent},
   {path: 'documentation/add', component: DocumentationAddComponent},
   {path: 'documentation/add/:pesel', component: DocumentationAddComponent},
+  {path: 'documentation/list/:doctorUsername', component: DocumentationPatientListComponent},
   {path: 'documentation/list/:patientId', component: DocumentationPatientListComponent},
   // otherwise redirect to home
   // {path: '**', redirectTo: ''}

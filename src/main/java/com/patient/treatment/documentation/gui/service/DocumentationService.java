@@ -46,4 +46,7 @@ public class DocumentationService {
                 .orElseGet(() -> documentationRepository.findAllByPatient_IdOrPatient_PeselOrderByCreationDateDesc(id, StringUtils.EMPTY));
     }
 
+    public List<DocumentationProjection> findByPatientByDoctorUsername(String doctorUsername) {
+        return documentationRepository.findAllByPatient_Doctors_usernameOrderByCreationDateDesc(doctorUsername);
+    }
 }

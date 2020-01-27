@@ -6,6 +6,7 @@ import {DocumentationListInterface} from "../documentation-list-interface";
 import {Documentation} from "../../model/documentation-interface";
 import {ActivatedRoute} from "@angular/router";
 import * as moment from 'moment';
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 declare var $: any;
 
@@ -23,11 +24,14 @@ export class DocumentationPatientListComponent implements OnInit, AfterViewInit 
   patientId: string;
   errorMessage: string;
   infoMessage: string;
+  documentationChangeForm: FormGroup;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+
   constructor(private patientService: PatientService,
               private documentationService: DocumentationService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -37,6 +41,10 @@ export class DocumentationPatientListComponent implements OnInit, AfterViewInit 
       }
     });
     this.getAllPatientDocumentation();
+
+    this.documentationChangeForm = this.formBuilder.group({
+      creationDate: ['']
+    });
   }
 
   ngAfterViewInit(): void {
@@ -64,6 +72,7 @@ export class DocumentationPatientListComponent implements OnInit, AfterViewInit 
   }
 
   editDocumentation() {
+    this.selectedDocumentation.creationDate = this.documentationChangeForm.value.creationDate;
     this.documentationService.update(this.selectedDocumentation).subscribe(data => {
       const itemIndex = this.documentations.findIndex(item => item.id == this.selectedDocumentation.id);
       this.documentations[itemIndex] = this.selectedDocumentation;
@@ -100,4 +109,7 @@ export class DocumentationPatientListComponent implements OnInit, AfterViewInit 
     return moment(creationDate).locale('pl').format('LLL');
   }
 
+  getDate(creationDate: Date) {
+    return moment(creationDate).format('DD.MM.YYYY, HH:mm:ss');
+  }
 }

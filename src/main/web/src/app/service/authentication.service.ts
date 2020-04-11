@@ -42,7 +42,7 @@ export class AuthenticationService {
   }
 
   public logout() {
-    this.http.post<any>('/logout', {}).subscribe(response => {
+    this.http.post<any>('/api/logout', {}).subscribe(response => {
         this.removeCurrentUserFromStorageAndRedirect();
       },
       error => {

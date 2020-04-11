@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit}                  from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import {AlertService} from "../../service/alert.service";
-import {AuthenticationService} from "../../service/authentication.service";
-import {first} from "rxjs/operators";
-import {PatientService} from "../../service/patient.service";
-import {BsLocaleService} from "ngx-bootstrap";
+import {Router}                             from "@angular/router";
+import {AlertService}                       from "../../service/alert.service";
+import {AuthenticationService}              from "../../service/authentication.service";
+import {first}                              from "rxjs/operators";
+import {PatientService}                     from "../../service/patient.service";
+import { BsLocaleService }                  from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-add-patient',

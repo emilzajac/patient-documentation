@@ -15,7 +15,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
       const authRequest = request.clone({
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': `Basic ${window.btoa(currentUser.username + ":" + currentUser.password)}`
+          'Authorization': 'Basic ' + btoa(currentUser.username + ':' + currentUser.password)
         })
       });
       return next.handle(authRequest);

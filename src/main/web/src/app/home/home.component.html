@@ -7,10 +7,10 @@
         </header>
         <article class="card-body">
           <div class="col">
-            <a class="btn btn-default btn-lg btn-custom-lg btn-block" [routerLink]="['documentation/add']">Dodaj Wpis</a>
-            <a class="btn btn-default btn-lg btn-custom-lg btn-block" (click)="documentationListEvent()">Lista wpisów</a>
-            <a class="btn btn-default btn-lg btn-custom-lg btn-block" [routerLink]="['patient/list']">Lista pacjentow</a>
-            <a class="btn btn-default btn-lg btn-custom-lg btn-block" [routerLink]="['patient/add']">Dodaj pacjenta</a>
+            <a class="btn btn-default btn-lg btn-custom-lg btn-block" routerLink="/documentation/add">Dodaj Wpis</a>
+            <a class="btn btn-default btn-lg btn-custom-lg btn-block" routerLink="{{documentationListEvent()}}">Lista wpisów</a>
+            <a class="btn btn-default btn-lg btn-custom-lg btn-block" routerLink="/patient/list">Lista pacjentow</a>
+            <a class="btn btn-default btn-lg btn-custom-lg btn-block" routerLink="/patient/add">Dodaj pacjenta</a>
           </div>
         </article>
       </div>

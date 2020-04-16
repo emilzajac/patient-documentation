@@ -34,4 +34,20 @@ public interface UserProjection {
 
     void setUserRoles(Set<UserRole> userRoles);
 
+    boolean isAccountNonExpired();
+
+    void setAccountNonExpired(boolean accountNonExpired);
+
+    boolean isAccountNonLocked();
+
+    void setAccountNonLocked(boolean accountNonLocked);
+
+    boolean isCredentialsNonExpired();
+
+    void setCredentialsNonExpired(boolean credentialsNonExpired);
+
+    boolean isEnabled();
+
+    void setEnabled(boolean enabled);
+
 }

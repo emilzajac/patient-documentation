@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -52,4 +53,15 @@ public class User {
     @JsonIgnore
     private Set<Patient> patients = new HashSet<>();
 
+    @Column(name = "account_non_expired")
+    private boolean accountNonExpired;
+
+    @Column(name = "account_non_locked")
+    private boolean accountNonLocked;
+
+    @Column(name = "credentials_non_expired")
+    private boolean credentialsNonExpired;
+
+    @Column(name = "enabled")
+    private boolean enabled;
 }

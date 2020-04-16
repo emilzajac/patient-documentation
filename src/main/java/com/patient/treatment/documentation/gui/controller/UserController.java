@@ -24,7 +24,8 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody UserRegisterForm userRegisterForm) {
-        return ResponseEntity.ok(userService.createUser(userRegisterForm));
+        userService.createUser(userRegisterForm);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping(value = "/{email}")

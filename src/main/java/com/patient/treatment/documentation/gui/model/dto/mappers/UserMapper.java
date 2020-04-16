@@ -12,6 +12,8 @@ public interface UserMapper {
 
     UserDto toUserDTO(UserProjection userProjection);
 
+    User toUserEntity(UserProjection userProjection);
+
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "patients", ignore = true)
     User toUserEntity(UserDto userDto);

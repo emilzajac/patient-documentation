@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
     private final CustomStatusEntryPoint customStatusEntryPoint;
 
-    private static final String[] PERMITTED_LINKS = {"/api/users/register", "/api/login", "/index.html", "/"};
+    private static final String[] PERMITTED_LINKS = {"/api/users/register", "/confirm/account", "/api/login", "/index.html", "/"};
     private static final String HEADER_CONTENT_SECURITY_POLICY =
             "default-src 'self'; font-src 'self' data: http://fonts.gstatic.com; img-src 'self' data:; " +
                     "script-src * data: https://ssl.gstatic.com 'unsafe-inline' 'unsafe-eval';" +
@@ -77,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
 
                 .csrf()
-                .ignoringAntMatchers("/api/login", "/api/users/register")
+                .ignoringAntMatchers("/api/login", "/api/users/register", "/confirm/account")
                 .csrfTokenRepository(getCsrfTokenRepository())
                 .and()
 

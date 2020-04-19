@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {AuthenticationService} from "../../service/authentication.service";
-import {AlertService} from "../../service/alert.service";
-import {first} from "rxjs/operators";
-import {DocumentationService} from "../../service/documentation.service";
-import {PatientInterface} from "../../model/patient-interface";
-import {PatientService} from "../../service/patient.service";
-import {BsLocaleService} from "ngx-bootstrap/datepicker";
+import { Component, OnInit }                  from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router }             from "@angular/router";
+import { AuthenticationService }              from "../../service/authentication.service";
+import { AlertService }                       from "../../service/alert.service";
+import { first }                              from "rxjs/operators";
+import { DocumentationService }               from "../../service/documentation.service";
+import { PatientInterface }                   from "../../model/patient-interface";
+import { PatientService }                     from "../../service/patient.service";
+import { BsLocaleService }                    from "ngx-bootstrap/datepicker";
 
 @Component({
   selector: 'app-documentation-add',
@@ -90,7 +90,7 @@ export class DocumentationAddComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Dokumentacja została dodana do listy Pacjenta', true);
-          this.router.navigate([`/documentation/list/${data.patient.id}`]);
+          this.router.navigate([`/documentation/list/patient/${data.patient.id}`]);
         },
         error => {
           this.alertService.error(error);

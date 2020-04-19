@@ -9,7 +9,6 @@ import { PatientListComponent }              from "./patient/patient-list/patien
 import { DocumentationAddComponent }         from "./documentation/documentation-add/documentation-add.component";
 import { DocumentationPatientListComponent } from "./documentation/documentation-patient-list/documentation-patient-list.component";
 import { AuthGuard }                         from "./guard/auth.guard";
-import { environment }                       from "../environments/environment";
 
 
 const routes: Routes = [
@@ -23,7 +22,7 @@ const routes: Routes = [
   {path: 'documentation/add', component: DocumentationAddComponent, canActivate: [AuthGuard]},
   {path: 'documentation/add/:pesel', component: DocumentationAddComponent, canActivate: [AuthGuard]},
   {path: 'documentation/list/:doctorUsername', component: DocumentationPatientListComponent, canActivate: [AuthGuard]},
-  {path: 'documentation/list/:patientId', component: DocumentationPatientListComponent, canActivate: [AuthGuard]},
+  {path: 'documentation/list/patient/:patientId', component: DocumentationPatientListComponent, canActivate: [AuthGuard]},
   // otherwise redirect to home
   {path: '**', redirectTo: 'login'}
 ];

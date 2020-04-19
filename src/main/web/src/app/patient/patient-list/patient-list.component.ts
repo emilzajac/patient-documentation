@@ -1,12 +1,12 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {PatientService} from "../../service/patient.service";
-import {DocumentationService} from "../../service/documentation.service";
-import {UserService} from "../../service/user.service";
-import {AuthenticationService} from "../../service/authentication.service";
-import {Patient} from "../../model/patient-interface";
-import {PatientListInterface} from "./patient-list-interface";
-import {MatPaginator, MatTableDataSource} from '@angular/material';
-import {Router} from "@angular/router";
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { PatientService }                              from "../../service/patient.service";
+import { DocumentationService }                        from "../../service/documentation.service";
+import { UserService }                                 from "../../service/user.service";
+import { AuthenticationService }                       from "../../service/authentication.service";
+import { Patient }                                     from "../../model/patient-interface";
+import { PatientListInterface }                        from "./patient-list-interface";
+import { MatPaginator, MatTableDataSource }            from '@angular/material';
+import { Router }                                      from "@angular/router";
 
 declare var $: any;
 
@@ -103,7 +103,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   }
 
   documentationPatientRequest(patient: PatientListInterface) {
-    this.router.navigate([`/documentation/list/${patient.id}`])
+    this.router.navigate([`/documentation/list/patient/${patient.id}`])
   }
 
   addDocumentation(pesel: string) {

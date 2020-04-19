@@ -18,13 +18,11 @@ public class DocumentationService {
 
     private final DocumentationRepository documentationRepository;
     private final DocumentationMapper documentationMapper;
-    private final EncryptDecryptService encryptDecryptService;
 
     @Autowired
-    public DocumentationService(DocumentationRepository documentationRepository, DocumentationMapper documentationMapper, EncryptDecryptService encryptDecryptService) {
+    public DocumentationService(DocumentationRepository documentationRepository, DocumentationMapper documentationMapper) {
         this.documentationRepository = documentationRepository;
         this.documentationMapper = documentationMapper;
-        this.encryptDecryptService = encryptDecryptService;
     }
 
     public Documentation create(DocumentationForm documentationForm) {
@@ -42,7 +40,7 @@ public class DocumentationService {
 
     public List<DocumentationProjection> findByPatient(long id, String pesel) {
         return Optional.ofNullable(pesel)
-                .map(peselNumber -> documentationRepository.findAllByPatient_IdOrPatient_PeselOrderByCreationDateDesc(id, encryptDecryptService.encrypt(peselNumber)))
+                .map(peselNumber -> documentationRepository.findAllByPatient_IdOrPatient_PeselOrderByCreationDateDesc(id, peselNumber))
                 .orElseGet(() -> documentationRepository.findAllByPatient_IdOrPatient_PeselOrderByCreationDateDesc(id, StringUtils.EMPTY));
     }
 

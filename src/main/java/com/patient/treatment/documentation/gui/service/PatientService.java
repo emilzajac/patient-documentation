@@ -18,27 +18,25 @@ public class PatientService {
 
     private final PatientRepository patientRepository;
     private final PatientMapper patientMapper;
-    private final EncryptDecryptService encryptDecryptService;
 
     @Autowired
-    public PatientService(PatientRepository patientRepository, PatientMapper patientMapper, EncryptDecryptService encryptDecryptService) {
+    public PatientService(PatientRepository patientRepository, PatientMapper patientMapper) {
         this.patientRepository = patientRepository;
         this.patientMapper = patientMapper;
-        this.encryptDecryptService = encryptDecryptService;
     }
 
     public Patient create(PatientForm patientForm) {
-        if (patientRepository.findByPesel(encryptDecryptService.encrypt(patientForm.getPesel())) != null) {
+        if (patientRepository.findByPesel(patientForm.getPesel()).isPresent()) {
             log.info("Patient with pesel {} already exist. Nothing will be done. ", patientForm.getFirstName());
             throw new RuntimeException("Pacjent o takim peselu istnieje już w rejestrze");
         } else {
-            patientForm.setPesel(encryptDecryptService.encrypt(patientForm.getPesel()));
+            patientForm.setPesel(patientForm.getPesel());
             return patientRepository.save(patientMapper.toPatientEntity(patientForm));
         }
     }
 
     public Patient update(PatientDto patientDto) {
-        patientDto.setPesel(encryptDecryptService.encrypt(patientDto.getPesel()));
+        patientDto.setPesel(patientDto.getPesel());
         return patientRepository.save(patientMapper.toPatientEntity(patientDto));
     }
 
@@ -47,7 +45,7 @@ public class PatientService {
     }
 
     public PatientDto findByPesel(String pesel) {
-        return patientMapper.toPatientDto(patientRepository.findByPesel(encryptDecryptService.encrypt(pesel)));
+        return patientRepository.findByPesel(pesel).map(patientMapper::toPatientDto).orElseThrow(() -> new RuntimeException("Mapping Error"));
     }
 
     public List<PatientProjection> findAllByFirstNameAndLastNameOrderByFirstName(String firstName, String lastName) {
@@ -56,7 +54,7 @@ public class PatientService {
 
     public List<PatientProjection> findAllPatientsOfTheDoctor(String doctorUserName) {
         List<PatientProjection> allByDoctorsUsername = patientRepository.findAllByDoctorsUsername(doctorUserName);
-        allByDoctorsUsername.forEach(patientProjection -> patientProjection.setPesel(encryptDecryptService.decrypt(patientProjection.getPesel())));
+        allByDoctorsUsername.forEach(patientProjection -> patientProjection.setPesel((patientProjection.getPesel())));
         return allByDoctorsUsername;
     }
 

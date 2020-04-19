@@ -15,6 +15,8 @@ public interface PatientMapper {
 
     PatientDto toPatientDto(PatientProjection patientProjection);
 
+    PatientDto toPatientDto(Patient patientProjection);
+
     Patient toPatientEntity(PatientDto patientDto);
 
     @Mapping(target = "id", ignore = true)

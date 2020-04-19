@@ -2,6 +2,7 @@ package com.patient.treatment.documentation.gui.model.entites;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.patient.treatment.documentation.gui.model.enumy.GenderEnum;
+import com.patient.treatment.documentation.gui.service.AttributeCipher;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -42,6 +44,7 @@ public class Patient {
     private String lastName;
 
     @NonNull
+    @Convert(converter = AttributeCipher.class)
     private String pesel;
 
     private String city;

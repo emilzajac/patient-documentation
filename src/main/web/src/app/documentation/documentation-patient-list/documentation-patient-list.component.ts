@@ -1,12 +1,12 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {PatientService} from "../../service/patient.service";
-import {DocumentationService} from "../../service/documentation.service";
-import {MatPaginator, MatTableDataSource} from "@angular/material";
-import {DocumentationListInterface} from "../documentation-list-interface";
-import {Documentation} from "../../model/documentation-interface";
-import {ActivatedRoute} from "@angular/router";
-import * as moment from 'moment';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { PatientService }                              from "../../service/patient.service";
+import { DocumentationService }                        from "../../service/documentation.service";
+import { MatPaginator, MatTableDataSource }            from "@angular/material";
+import { DocumentationListInterface }                  from "../documentation-list-interface";
+import { Documentation }                               from "../../model/documentation-interface";
+import { ActivatedRoute }                              from "@angular/router";
+import * as moment                                     from 'moment';
+import { FormBuilder, FormGroup }                      from "@angular/forms";
 
 declare var $: any;
 

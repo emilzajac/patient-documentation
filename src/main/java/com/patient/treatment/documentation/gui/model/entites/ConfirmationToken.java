@@ -35,13 +35,14 @@ public class ConfirmationToken {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id", unique = true)
     private long id;
 
-    @Column(name="token")
+    @Column(name = "token", unique = true)
     private String token;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_date")
     private Date createdDate;
 
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)

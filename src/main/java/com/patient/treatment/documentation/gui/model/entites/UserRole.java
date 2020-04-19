@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,6 +26,7 @@ public class UserRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true)
     private long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -32,6 +34,7 @@ public class UserRole {
     private User user;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private RoleEnum roleEnum;
 
 }

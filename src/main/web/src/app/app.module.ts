@@ -7,7 +7,6 @@ import { LoginComponent }                                            from './log
 import { FormsModule, ReactiveFormsModule }                          from "@angular/forms";
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule } from "@angular/common/http";
 import { MenuComponent }                                             from './menu/menu.component';
-import { LogoutComponent }                                           from './logout/logout.component';
 import { RegisterComponent }                                         from './register/register.component';
 import { AlertComponent }                                            from './alert/alert.component';
 import { ErrorInterceptor }                                          from "./interceptor/error.interceptor";
@@ -46,7 +45,6 @@ defineLocale('pl', plLocale);
     AppComponent,
     LoginComponent,
     MenuComponent,
-    LogoutComponent,
     RegisterComponent,
     AlertComponent,
     HomeComponent,

@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {map} from "rxjs/operators";
-import {BehaviorSubject, Observable} from "rxjs";
-import {User} from "../model/user";
-import {Router} from "@angular/router";
+import { Injectable }                  from '@angular/core';
+import { HttpClient }                  from "@angular/common/http";
+import { map }                         from "rxjs/operators";
+import { BehaviorSubject, Observable } from "rxjs";
+import { User }                        from "../model/user";
+import { Router }                      from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +56,6 @@ export class AuthenticationService {
   }
 
   private removeCurrentUserFromStorageAndRedirect() {
-    console.log("done");
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);

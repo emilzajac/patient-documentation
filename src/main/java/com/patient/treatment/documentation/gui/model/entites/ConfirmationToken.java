@@ -27,11 +27,9 @@ import java.util.UUID;
 @Entity
 public class ConfirmationToken {
 
-    public ConfirmationToken(User user) {
-        this.user = user;
-        createdDate = new Date();
-        token = UUID.randomUUID().toString();
-    }
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "creation_date")
+    private Date creationDate;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,9 +39,11 @@ public class ConfirmationToken {
     @Column(name = "token", unique = true)
     private String token;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_date")
-    private Date createdDate;
+    public ConfirmationToken(User user) {
+        this.user = user;
+        creationDate = new Date();
+        token = UUID.randomUUID().toString();
+    }
 
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")

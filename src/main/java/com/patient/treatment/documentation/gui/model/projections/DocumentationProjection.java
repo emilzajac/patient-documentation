@@ -35,9 +35,13 @@ public interface DocumentationProjection {
 
     void setCreationDate(LocalDateTime creationDate);
 
-    User getUser();
+    String getUuid();
 
-    void setUser(User user);
+    void setUuid(String uuid);
+
+    User getDoctor();
+
+    void setDoctor(User user);
 
     Patient getPatient();
 

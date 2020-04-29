@@ -1,6 +1,5 @@
 package com.patient.treatment.documentation.gui.model.form;
 
-import com.patient.treatment.documentation.gui.model.entites.User;
 import com.patient.treatment.documentation.gui.model.enumy.GenderEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +33,5 @@ public class PatientForm {
     private GenderEnum gender;
 
     private LocalDate dateOfBirth;
-
-    private User doctor;
 
 }

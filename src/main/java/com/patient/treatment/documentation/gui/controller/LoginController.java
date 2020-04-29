@@ -1,7 +1,9 @@
 package com.patient.treatment.documentation.gui.controller;
 
 import com.patient.treatment.documentation.gui.model.dto.UserDto;
+import com.patient.treatment.documentation.gui.model.dto.mappers.UserMapper;
 import com.patient.treatment.documentation.gui.model.security.UserPrincipal;
+import com.patient.treatment.documentation.gui.session.SessionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,9 +17,18 @@ import java.security.Principal;
 @RequestMapping("/api")
 public class LoginController {
 
+    private SessionService sessionService;
+    private UserMapper userMapper;
+
+    public LoginController(SessionService sessionService, UserMapper userMapper) {
+        this.sessionService = sessionService;
+        this.userMapper = userMapper;
+    }
+
     @GetMapping("/login")
     public ResponseEntity<UserDto> login(@AuthenticationPrincipal Principal user) {
-        return ResponseEntity.ok(((UserPrincipal) ((UsernamePasswordAuthenticationToken) user).getPrincipal()).getUserDto());
+        sessionService.setAuthenticatedUser(((UserPrincipal) ((UsernamePasswordAuthenticationToken) user).getPrincipal()).getUser());
+        return ResponseEntity.ok(userMapper.toUserDTO(((UserPrincipal) ((UsernamePasswordAuthenticationToken) user).getPrincipal()).getUser()));
     }
 
 }

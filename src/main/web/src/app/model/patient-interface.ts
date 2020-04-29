@@ -1,5 +1,4 @@
-import {GenderEnum} from "./gender.enum";
-import {User} from "./user";
+import { GenderEnum } from "./gender.enum";
 
 export interface PatientInterface {
 
@@ -23,8 +22,6 @@ export interface PatientInterface {
 
   dateOfBirth: Date;
 
-  doctor: User;
-
 }
 
 export class Patient implements PatientInterface {
@@ -38,5 +35,4 @@ export class Patient implements PatientInterface {
   postCode: string;
   gender: GenderEnum;
   dateOfBirth: Date;
-  doctor: User;
 }

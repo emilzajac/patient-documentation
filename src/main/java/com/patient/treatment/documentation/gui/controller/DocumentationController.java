@@ -1,11 +1,11 @@
 package com.patient.treatment.documentation.gui.controller;
 
 import com.patient.treatment.documentation.gui.model.dto.DocumentationDto;
-import com.patient.treatment.documentation.gui.model.entites.Documentation;
 import com.patient.treatment.documentation.gui.model.form.DocumentationForm;
 import com.patient.treatment.documentation.gui.model.projections.DocumentationProjection;
 import com.patient.treatment.documentation.gui.service.DocumentationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,12 +31,13 @@ public class DocumentationController {
     }
 
     @PostMapping
-    public ResponseEntity<Documentation> create(@RequestBody DocumentationForm documentationForm) {
-        return ResponseEntity.ok(documentationService.create(documentationForm));
+    public ResponseEntity create(@RequestBody DocumentationForm documentationForm) {
+        documentationService.create(documentationForm);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Documentation> update(@RequestBody DocumentationDto documentationDto) {
+    public ResponseEntity<DocumentationDto> update(@RequestBody DocumentationDto documentationDto) {
         return ResponseEntity.ok(documentationService.update(documentationDto));
     }
 

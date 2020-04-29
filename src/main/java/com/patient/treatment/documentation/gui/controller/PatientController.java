@@ -1,11 +1,11 @@
 package com.patient.treatment.documentation.gui.controller;
 
 import com.patient.treatment.documentation.gui.model.dto.PatientDto;
-import com.patient.treatment.documentation.gui.model.entites.Patient;
 import com.patient.treatment.documentation.gui.model.form.PatientForm;
 import com.patient.treatment.documentation.gui.model.projections.PatientProjection;
 import com.patient.treatment.documentation.gui.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,16 +31,17 @@ public class PatientController {
 
     @PostMapping
     public ResponseEntity create(@RequestBody PatientForm patientForm) {
-        return ResponseEntity.ok(patientService.create(patientForm));
+        patientService.create(patientForm);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{pesel}")
-    public ResponseEntity find(@PathVariable String pesel) {
+    public ResponseEntity<PatientDto> find(@PathVariable String pesel) {
         return ResponseEntity.ok(patientService.findByPesel(pesel));
     }
 
     @PutMapping
-    public ResponseEntity<Patient> update(@RequestBody PatientDto patientDto) {
+    public ResponseEntity<PatientDto> update(@RequestBody PatientDto patientDto) {
         return ResponseEntity.ok(patientService.update(patientDto));
     }
 

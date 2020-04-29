@@ -127,7 +127,7 @@
           <div class="col form-group">
             <label for="diagnosisOfTheDisease">Rozpoznanie</label>
             <textarea type="text" class="form-control" id="diagnosisOfTheDisease" name="diagnosisOfTheDisease"
-                      [(ngModel)]="selectedDocumentation.physicalExamination" #diagnosisOfTheDisease="ngModel" rows="3" required></textarea>
+                      #diagnosisOfTheDisease="ngModel" [(ngModel)]="selectedDocumentation.diagnosisOfTheDisease" required rows="3"></textarea>
           </div>
           <div class="col form-group">
             <label for="medicines">Leki i dawkowanie</label>

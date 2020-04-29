@@ -1,12 +1,12 @@
 package com.patient.treatment.documentation.gui.model.dto;
 
+import com.patient.treatment.documentation.gui.model.enumy.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
 import java.util.Set;
 
 @Getter
@@ -14,9 +14,9 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto implements Serializable {
+public class UserDto {
 
-    private String id;
+    private long id;
 
     private String username;
 
@@ -28,7 +28,7 @@ public class UserDto implements Serializable {
 
     private String password;
 
-    private Set<UserRoleDto> userRoles;
+    private Set<RoleEnum> userRoles;
 
     private boolean accountNonExpired;
 

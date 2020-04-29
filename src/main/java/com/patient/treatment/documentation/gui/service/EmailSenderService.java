@@ -20,6 +20,9 @@ public class EmailSenderService {
     @Value("${message.confirmation.token.text}")
     private String textOfConfirmationTokenMessage;
 
+    @Value("${application.address.url}")
+    private String addressUrl;
+
     private JavaMailSender javaMailSender;
 
     public EmailSenderService(JavaMailSender javaMailSender) {
@@ -32,7 +35,7 @@ public class EmailSenderService {
         mailMessage.setTo(emailAddress);
         mailMessage.setSubject(subjectOfConfirmationTokenMessage);
         mailMessage.setFrom(fromOfConfirmationTokenMessage);
-        mailMessage.setText(textOfConfirmationTokenMessage + confirmationToken);
+        mailMessage.setText(textOfConfirmationTokenMessage + addressUrl + "/confirm/account?token=" + confirmationToken);
         javaMailSender.send(mailMessage);
     }
 

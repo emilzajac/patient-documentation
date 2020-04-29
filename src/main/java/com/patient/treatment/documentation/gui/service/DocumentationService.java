@@ -6,32 +6,48 @@ import com.patient.treatment.documentation.gui.model.entites.Documentation;
 import com.patient.treatment.documentation.gui.model.form.DocumentationForm;
 import com.patient.treatment.documentation.gui.model.projections.DocumentationProjection;
 import com.patient.treatment.documentation.gui.repository.DocumentationRepository;
+import com.patient.treatment.documentation.gui.repository.PatientRepository;
+import com.patient.treatment.documentation.gui.session.SessionService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class DocumentationService {
 
     private final DocumentationRepository documentationRepository;
     private final DocumentationMapper documentationMapper;
+    private final SessionService sessionService;
+    private final PatientRepository patientRepository;
 
     @Autowired
-    public DocumentationService(DocumentationRepository documentationRepository, DocumentationMapper documentationMapper) {
+    public DocumentationService(DocumentationRepository documentationRepository,
+                                DocumentationMapper documentationMapper,
+                                SessionService sessionService,
+                                PatientRepository patientRepository) {
         this.documentationRepository = documentationRepository;
         this.documentationMapper = documentationMapper;
+        this.sessionService = sessionService;
+        this.patientRepository = patientRepository;
     }
 
     public Documentation create(DocumentationForm documentationForm) {
         Documentation documentationEntity = documentationMapper.toDocumentationEntity(documentationForm);
+        documentationEntity.setDoctor(sessionService.getAuthenticatedUser());
+        documentationEntity.setPatient(patientRepository.findByPesel(documentationForm.getPatientPesel()).orElseThrow(() -> new RuntimeException("Patient not found")));
+        documentationEntity.setUuid(UUID.randomUUID().toString());
         return documentationRepository.save(documentationEntity);
     }
 
-    public Documentation update(DocumentationDto documentationDto) {
-        return documentationRepository.save(documentationMapper.toDocumentationEntity(documentationDto));
+    public DocumentationDto update(DocumentationDto documentationDto) {
+        Documentation documentation = documentationMapper.toDocumentationEntity(documentationDto);
+        documentation.setPatient(documentationRepository.findById(documentationDto.getId()).orElseThrow(() -> new RuntimeException("Documentation not found")).getPatient());
+        documentation.setDoctor(documentationRepository.findById(documentationDto.getId()).orElseThrow(() -> new RuntimeException("Documentation not found")).getDoctor());
+        return documentationMapper.toDocumentationDto(documentationRepository.save(documentation));
     }
 
     public void deleteById(long id) {

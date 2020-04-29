@@ -1,5 +1,5 @@
-import {UserMT} from "./user";
-import {PatientInterface} from "./patient-interface";
+import { UserMT }           from "./user";
+import { PatientInterface } from "./patient-interface";
 
 export interface DocumentationFormInterface {
 
@@ -17,7 +17,7 @@ export interface DocumentationFormInterface {
 
   creationDate: Date;
 
-  user: UserMT;
+  doctor: UserMT;
 
   patient: PatientInterface;
 
@@ -32,5 +32,5 @@ export class Documentation implements DocumentationFormInterface {
   recommendations: string;
   creationDate: Date;
   patient: PatientInterface;
-  user: UserMT;
+  doctor: UserMT;
 }

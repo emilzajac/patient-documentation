@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.model.security;
 
-import com.patient.treatment.documentation.gui.model.dto.UserDto;
+import com.patient.treatment.documentation.gui.model.entites.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,43 +18,43 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class UserPrincipal implements UserDetails {
 
-    private UserDto userDto;
+    private User user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.userDto.getUserRoles().stream()
+        return this.user.getUserRoles().stream()
                 .map(userRole -> new SimpleGrantedAuthority(userRole.getRoleEnum().name()))
                 .collect(Collectors.toSet());
     }
 
     @Override
     public String getPassword() {
-        return this.userDto.getPassword();
+        return this.user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return this.userDto.getUsername();
+        return this.user.getUsername();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.userDto.isAccountNonExpired();
+        return this.user.isAccountNonExpired();
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.userDto.isAccountNonLocked();
+        return this.user.isAccountNonLocked();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.userDto.isCredentialsNonExpired();
+        return this.user.isCredentialsNonExpired();
     }
 
     @Override
     public boolean isEnabled() {
-        return this.userDto.isEnabled();
+        return this.user.isEnabled();
     }
 
 }

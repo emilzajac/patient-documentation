@@ -1,5 +1,5 @@
-import {UserMT} from "../model/user";
-import {PatientInterface} from "../model/patient-interface";
+import { UserMT }           from "../model/user";
+import { PatientInterface } from "../model/patient-interface";
 
 export interface DocumentationListInterface {
 
@@ -17,7 +17,7 @@ export interface DocumentationListInterface {
 
   creationDate: Date;
 
-  user: UserMT;
+  doctor: UserMT;
 
   patient: PatientInterface;
 

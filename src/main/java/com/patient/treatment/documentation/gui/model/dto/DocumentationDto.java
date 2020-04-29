@@ -1,7 +1,5 @@
 package com.patient.treatment.documentation.gui.model.dto;
 
-import com.patient.treatment.documentation.gui.model.entites.Patient;
-import com.patient.treatment.documentation.gui.model.entites.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,8 +29,8 @@ public class DocumentationDto {
 
     private LocalDateTime creationDate;
 
-    private User user;
+    private String uuid;
 
-    private Patient patient;
+    private String patientPesel;
 
 }

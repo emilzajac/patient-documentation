@@ -140,19 +140,25 @@
             <column name="recommendations" type="TEXT">
                 <constraints nullable="false"/>
             </column>
+            <column name="uuid" type="VARCHAR(36)">
+                <constraints nullable="false"/>
+            </column>
             <column name="patient_id" type="BIGINT(20)">
                 <constraints nullable="false"
                              foreignKeyName="fk_documentation_patient"
                              referencedTableName="patient"
                              references="patient(id)"/>
             </column>
-            <column name="user_id" type="BIGINT(20)">
+            <column name="doctor_id" type="BIGINT(20)">
                 <constraints nullable="false"
                              foreignKeyName="fk_documentation_user"
                              referencedTableName="user"
                              references="user(id)"/>
             </column>
         </createTable>
+        <addUniqueConstraint columnNames="uuid"
+                             constraintName="UNIQUE_uuid"
+                             tableName="documentation"/>
     </changeSet>
 
     <changeSet id="create_confirmation_token_table" author="EZ">

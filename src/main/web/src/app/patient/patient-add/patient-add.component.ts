@@ -1,11 +1,10 @@
-import {Component, OnInit}                  from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router}                             from "@angular/router";
-import {AlertService}                       from "../../service/alert.service";
-import {AuthenticationService}              from "../../service/authentication.service";
-import {first}                              from "rxjs/operators";
-import {PatientService}                     from "../../service/patient.service";
-import { BsLocaleService }                  from 'ngx-bootstrap/datepicker';
+import { Component, OnInit }                  from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router }                             from "@angular/router";
+import { AlertService }                       from "../../service/alert.service";
+import { first }                              from "rxjs/operators";
+import { PatientService }                     from "../../service/patient.service";
+import { BsLocaleService }                    from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-add-patient',
@@ -20,7 +19,6 @@ export class PatientAddComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private patientService: PatientService,
-              private authenticationService: AuthenticationService,
               private alertService: AlertService,
               private bsLocaleService: BsLocaleService) {
     bsLocaleService.use('pl');
@@ -37,7 +35,6 @@ export class PatientAddComponent implements OnInit {
       street: ['', Validators.required],
       houseNumber: ['', Validators.required],
       postCode: ['', Validators.required],
-      doctor: [this.authenticationService.currentUserValue, Validators.required],
     });
   }
 
@@ -55,8 +52,6 @@ export class PatientAddComponent implements OnInit {
     if (this.patientAddForm.invalid) {
       return;
     }
-
-    this.patientAddForm.value;
 
     this.loading = true;
     this.patientService.add(this.patientAddForm.value)

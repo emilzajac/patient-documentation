@@ -9,14 +9,15 @@
           <form [formGroup]="documentationAddForm" (ngSubmit)="onSubmit()">
             <div class="form-row">
               <div class="col form-group">
-                <label for="pesel">Pesel pacjenta</label>
-                <input (change)="checkPesel(field.pesel.value)" id="pesel" type="text" formControlName="pesel"
+                <label for="patientPesel">Pesel pacjenta</label>
+                <input (change)="checkPesel(field.patientPesel.value)" [ngClass]="{ 'is-invalid': field.patientPesel.touched && field.patientPesel.errors }" formControlName="patientPesel"
+                       id="patientPesel"
                        class="form-control"
-                       [ngClass]="{ 'is-invalid': field.pesel.touched && field.pesel.errors }"/>
-                <div *ngIf="field.pesel.touched && field.pesel.errors" class="invalid-feedback">
-                  <div *ngIf="field.pesel.errors.required">Pesel pacjenta jest wymagany</div>
-                  <div *ngIf="field.pesel.errors.notProperLength">Pesel jest złej długości</div>
-                  <div *ngIf="field.pesel.errors.notExists">Pacjent o takim peselu nie istnieje w bazie, proszę dodać pacjenta</div>
+                       type="text"/>
+                <div *ngIf="field.patientPesel.touched && field.patientPesel.errors" class="invalid-feedback">
+                  <div *ngIf="field.patientPesel.errors.required">Pesel pacjenta jest wymagany</div>
+                  <div *ngIf="field.patientPesel.errors.notProperLength">Pesel jest złej długości</div>
+                  <div *ngIf="field.patientPesel.errors.notExists">Pacjent o takim peselu nie istnieje w bazie, proszę dodać pacjenta</div>
                 </div>
               </div>
               <div class="col form-group">

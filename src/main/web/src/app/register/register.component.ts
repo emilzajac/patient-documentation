@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.alertService.success('Rejestracja zakończona sukcesem! Na podany adres eamil został wysłany link aktywujący konto', true);
+          this.alertService.success('Rejestracja zakończona sukcesem! Na podany adres e-mail został wysłany link aktywujący konto', true);
           this.router.navigate(['/login']);
         },
         error => {

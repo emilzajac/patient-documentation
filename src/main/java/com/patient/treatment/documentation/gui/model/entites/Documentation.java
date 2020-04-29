@@ -47,8 +47,11 @@ public class Documentation {
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 
+    @Column(name = "uuid")
+    private String uuid;
+
     @OneToOne
-    private User user;
+    private User doctor;
 
     @ManyToOne
     @JoinColumn(name = "patient_id")

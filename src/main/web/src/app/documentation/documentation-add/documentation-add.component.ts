@@ -1,7 +1,6 @@
 import { Component, OnInit }                  from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router }             from "@angular/router";
-import { AuthenticationService }              from "../../service/authentication.service";
 import { AlertService }                       from "../../service/alert.service";
 import { first }                              from "rxjs/operators";
 import { DocumentationService }               from "../../service/documentation.service";
@@ -25,7 +24,6 @@ export class DocumentationAddComponent implements OnInit {
               private router: Router,
               private documentationService: DocumentationService,
               private patientService: PatientService,
-              private authenticationService: AuthenticationService,
               private alertService: AlertService,
               private bsLocaleService: BsLocaleService,
               private route: ActivatedRoute) {
@@ -44,15 +42,13 @@ export class DocumentationAddComponent implements OnInit {
     });
 
     this.documentationAddForm = this.formBuilder.group({
-      pesel: [this.pesel, Validators.required],
+      patientPesel: [this.pesel, Validators.required],
       interview: [''],
       physicalExamination: [''],
       diagnosisOfTheDisease: [''],
       recommendations: [''],
       creationDate: [''],
       medicines: ['', Validators.required],
-      patient: [''],
-      user: [this.authenticationService.currentUserValue]
     });
   }
 
@@ -64,8 +60,6 @@ export class DocumentationAddComponent implements OnInit {
           this.patient = patient;
           if (!this.patient) {
             control.setErrors({notExists: true});
-          } else {
-            control.setErrors(null);
           }
         });
     } else {
@@ -75,8 +69,6 @@ export class DocumentationAddComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
-    this.documentationAddForm.value.patient = this.patient;
 
     this.alertService.clear();
 
@@ -88,9 +80,9 @@ export class DocumentationAddComponent implements OnInit {
     this.documentationService.add(this.documentationAddForm.value)
       .pipe(first())
       .subscribe(
-        data => {
+        () => {
           this.alertService.success('Dokumentacja została dodana do listy Pacjenta', true);
-          this.router.navigate([`/documentation/list/patient/${data.patient.id}`]);
+          this.router.navigate([`/documentation/list/patient/${this.patient.id}`]);
         },
         error => {
           this.alertService.error(error);

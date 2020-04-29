@@ -1,7 +1,6 @@
 package com.patient.treatment.documentation.gui.service;
 
 import com.patient.treatment.documentation.gui.exceptions.UnexpectedException;
-import com.patient.treatment.documentation.gui.model.dto.UserDto;
 import com.patient.treatment.documentation.gui.model.dto.mappers.UserMapper;
 import com.patient.treatment.documentation.gui.model.entites.ConfirmationToken;
 import com.patient.treatment.documentation.gui.model.entites.User;
@@ -83,8 +82,8 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public UserDto findByUserName(String userName) {
-        UserDto user = userMapper.toUserDTO(userRepository.findByUsername(userName));
+    public User findByUserName(String userName) {
+        User user = userMapper.toUserEntity(userRepository.findByUsername(userName));
         if (user == null) {
             log.warn("Username {} not found", userName);
             throw new UsernameNotFoundException("Username " + userName + " not found");

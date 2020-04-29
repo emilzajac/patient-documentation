@@ -1,7 +1,5 @@
 package com.patient.treatment.documentation.gui.model.dto;
 
-import com.patient.treatment.documentation.gui.model.entites.Documentation;
-import com.patient.treatment.documentation.gui.model.entites.User;
 import com.patient.treatment.documentation.gui.model.enumy.GenderEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,8 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
 
 @EqualsAndHashCode
 @Getter
@@ -41,9 +37,5 @@ public class PatientDto {
     private GenderEnum gender;
 
     private LocalDate dateOfBirth;
-
-    private Set<User> doctors;
-
-    private List<Documentation> documentations;
 
 }

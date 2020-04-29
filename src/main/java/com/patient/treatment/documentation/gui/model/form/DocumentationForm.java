@@ -1,7 +1,5 @@
 package com.patient.treatment.documentation.gui.model.form;
 
-import com.patient.treatment.documentation.gui.model.entites.Patient;
-import com.patient.treatment.documentation.gui.model.entites.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,11 +25,8 @@ public class DocumentationForm {
 
     private String medicines;
 
-    //    @JsonFormat(pattern = "dd.MM.yyyy'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime creationDate;
 
-    private User user;
-
-    private Patient patient;
+    private String patientPesel;
 
 }

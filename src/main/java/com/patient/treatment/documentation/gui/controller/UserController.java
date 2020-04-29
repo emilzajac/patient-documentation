@@ -3,6 +3,7 @@ package com.patient.treatment.documentation.gui.controller;
 import com.patient.treatment.documentation.gui.model.form.UserRegisterForm;
 import com.patient.treatment.documentation.gui.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody UserRegisterForm userRegisterForm) {
         userService.createUser(userRegisterForm);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{email}")

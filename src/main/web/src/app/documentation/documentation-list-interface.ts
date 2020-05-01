@@ -1,6 +1,3 @@
-import { UserMT }           from "../model/user";
-import { PatientInterface } from "../model/patient-interface";
-
 export interface DocumentationListInterface {
 
   id: number;
@@ -16,9 +13,5 @@ export interface DocumentationListInterface {
   medicines: string;
 
   creationDate: Date;
-
-  doctor: UserMT;
-
-  patient: PatientInterface;
 
 }

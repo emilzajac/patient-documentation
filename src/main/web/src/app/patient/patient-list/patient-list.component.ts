@@ -1,7 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { PatientService }                              from "../../service/patient.service";
-import { DocumentationService }                        from "../../service/documentation.service";
-import { UserService }                                 from "../../service/user.service";
 import { AuthenticationService }                       from "../../service/authentication.service";
 import { Patient }                                     from "../../model/patient-interface";
 import { PatientListInterface }                        from "./patient-list-interface";
@@ -27,8 +25,6 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   constructor(private patientService: PatientService,
-              private documentationService: DocumentationService,
-              private userService: UserService,
               private authenticationService: AuthenticationService,
               private router: Router) {
   }
@@ -97,7 +93,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
       this.dataSource = new MatTableDataSource(this.patients);
       this.infoMessage = 'Pacjent został usunięty.';
       $('#deleteModal').modal('hide');
-    }, err => {
+    }, () => {
       this.errorMessage = 'Wystąpił nieoczekiwany błąd.';
     });
   }

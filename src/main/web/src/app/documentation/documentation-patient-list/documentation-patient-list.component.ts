@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { PatientService }                              from "../../service/patient.service";
 import { DocumentationService }                        from "../../service/documentation.service";
 import { MatPaginator, MatTableDataSource }            from "@angular/material";
 import { DocumentationListInterface }                  from "../documentation-list-interface";
@@ -27,8 +26,7 @@ export class DocumentationPatientListComponent implements OnInit, AfterViewInit 
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-  constructor(private patientService: PatientService,
-              private documentationService: DocumentationService,
+  constructor(private documentationService: DocumentationService,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder) {
   }
@@ -109,7 +107,7 @@ export class DocumentationPatientListComponent implements OnInit, AfterViewInit 
       this.dataSource = new MatTableDataSource(this.documentations);
       this.infoMessage = 'Dokumentacja została usunięta.';
       $('#deleteDocumentationModal').modal('hide');
-    }, err => {
+    }, () => {
       this.errorMessage = 'Wystąpił nieoczekiwany błąd.';
     });
   }

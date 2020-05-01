@@ -20,8 +20,4 @@ public class UnexpectedException extends RuntimeException {
         super(MESSAGE, cause);
     }
 
-    protected UnexpectedException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
-
 }

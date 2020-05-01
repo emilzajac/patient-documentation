@@ -1,12 +1,8 @@
 package com.patient.treatment.documentation.gui.model.projections;
 
-import com.patient.treatment.documentation.gui.model.entites.Documentation;
-import com.patient.treatment.documentation.gui.model.entites.User;
 import com.patient.treatment.documentation.gui.model.enumy.GenderEnum;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
 
 public interface PatientProjection {
 
@@ -49,13 +45,5 @@ public interface PatientProjection {
     LocalDate getDateOfBirth();
 
     void setDateOfBirth(LocalDate dateOfBirth);
-
-    Set<User> getDoctors();
-
-    void setDoctors(Set<User> doctors);
-
-    List<Documentation> getDocumentations();
-
-    void setDocumentations(List<Documentation> documentations);
 
 }

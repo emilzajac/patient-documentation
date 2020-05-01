@@ -14,12 +14,12 @@ import org.mapstruct.ReportingPolicy;
 @DecoratedWith(UserMapperDecorator.class)
 public interface UserMapper {
 
-    @Mapping(target = "userRoles",
-            expression = "java( user.getUserRoles().stream().map(UserRole::getRoleEnum).collect(java.util.stream.Collectors.toSet()) )")
-    UserDto toUserDTO(User user);
+    User toUserEntity(UserRegisterForm userRegisterForm);
 
     User toUserEntity(UserProjection userProjection);
 
-    User toUserEntity(UserRegisterForm userRegisterForm);
+    @Mapping(target = "userRoles",
+            expression = "java( user.getUserRoles().stream().map(UserRole::getRoleEnum).collect(java.util.stream.Collectors.toSet()) )")
+    UserDto toUserDTO(User user);
 
 }

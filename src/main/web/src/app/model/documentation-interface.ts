@@ -1,6 +1,3 @@
-import { UserMT }           from "./user";
-import { PatientInterface } from "./patient-interface";
-
 export interface DocumentationFormInterface {
 
   id: number
@@ -17,10 +14,6 @@ export interface DocumentationFormInterface {
 
   creationDate: Date;
 
-  doctor: UserMT;
-
-  patient: PatientInterface;
-
 }
 
 export class Documentation implements DocumentationFormInterface {
@@ -31,6 +24,4 @@ export class Documentation implements DocumentationFormInterface {
   physicalExamination: string;
   recommendations: string;
   creationDate: Date;
-  patient: PatientInterface;
-  doctor: UserMT;
 }

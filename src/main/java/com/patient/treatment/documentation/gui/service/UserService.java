@@ -1,6 +1,7 @@
 package com.patient.treatment.documentation.gui.service;
 
 import com.patient.treatment.documentation.gui.exceptions.UnexpectedException;
+import com.patient.treatment.documentation.gui.exceptions.UserException;
 import com.patient.treatment.documentation.gui.model.dto.mappers.UserMapper;
 import com.patient.treatment.documentation.gui.model.entites.ConfirmationToken;
 import com.patient.treatment.documentation.gui.model.entites.User;
@@ -12,7 +13,7 @@ import com.patient.treatment.documentation.gui.repository.ConfirmationTokenRepos
 import com.patient.treatment.documentation.gui.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,6 +47,7 @@ public class UserService {
     public void createUser(UserRegisterForm userRegisterForm) {
         if (userRepository.findByEmail(userRegisterForm.getEmail()) != null) {
             log.info("User with email {} already exist. Nothing will be done. ", userRegisterForm.getEmail());
+            throw new UserException("Użytkownik o takim e-mailu już istnieje", HttpStatus.CONFLICT);
         } else {
             User savedUser = null;
             ConfirmationToken confirmationToken = null;
@@ -62,7 +64,7 @@ public class UserService {
                 if (savedUser != null) {
                     userRepository.delete(savedUser);
                 }
-                throw new UnexpectedException(exception);
+                throw new UnexpectedException("Błąd Tworzenia konta", exception);
             }
         }
     }
@@ -75,7 +77,7 @@ public class UserService {
             userRepository.save(user);
             return;
         }
-        throw new UnexpectedException("Brak tokenu w systemie");
+        throw new UnexpectedException("Brak tokenu w systemie: " + confirmationToken);
     }
 
     public UserProjection findByEmail(String email) {
@@ -86,7 +88,7 @@ public class UserService {
         User user = userMapper.toUserEntity(userRepository.findByUsername(userName));
         if (user == null) {
             log.warn("Username {} not found", userName);
-            throw new UsernameNotFoundException("Username " + userName + " not found");
+            throw new UserException("Username " + userName + " not found", HttpStatus.NOT_FOUND);
         }
         return user;
     }

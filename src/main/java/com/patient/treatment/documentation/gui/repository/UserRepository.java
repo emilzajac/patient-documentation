@@ -10,6 +10,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     UserProjection findByEmail(String email);
 
-    User findByUsername(String username);
+    UserProjection findByUsername(String username);
 
 }

@@ -10,17 +10,17 @@ public interface UserProjection {
 
     void setId(Long id);
 
-    String getName();
+    String getFirstName();
 
-    void setName(String name);
+    void setFirstName(String name);
 
     String getUsername();
 
     void setUsername(String name);
 
-    String getSurname();
+    String getLastName();
 
-    void setSurname(String surname);
+    void setLastName(String surname);
 
     String getEmail();
 
@@ -33,5 +33,21 @@ public interface UserProjection {
     Set<UserRole> getUserRoles();
 
     void setUserRoles(Set<UserRole> userRoles);
+
+    boolean isAccountNonExpired();
+
+    void setAccountNonExpired(boolean accountNonExpired);
+
+    boolean isAccountNonLocked();
+
+    void setAccountNonLocked(boolean accountNonLocked);
+
+    boolean isCredentialsNonExpired();
+
+    void setCredentialsNonExpired(boolean credentialsNonExpired);
+
+    boolean isEnabled();
+
+    void setEnabled(boolean enabled);
 
 }

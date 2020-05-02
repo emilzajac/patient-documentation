@@ -1,12 +1,12 @@
 package com.patient.treatment.documentation.gui.model.dto;
 
-import com.patient.treatment.documentation.gui.model.entites.Patient;
-import com.patient.treatment.documentation.gui.model.entites.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -14,6 +14,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DocumentationDto {
+
+    private long id;
 
     private String interview;
 
@@ -25,8 +27,10 @@ public class DocumentationDto {
 
     private String medicines;
 
-    private User user;
+    private LocalDateTime creationDate;
 
-    private Patient patient;
+    private String uuid;
+
+    private String patientPesel;
 
 }

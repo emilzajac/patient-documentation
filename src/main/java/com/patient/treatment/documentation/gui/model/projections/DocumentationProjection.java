@@ -1,7 +1,6 @@
 package com.patient.treatment.documentation.gui.model.projections;
 
-import com.patient.treatment.documentation.gui.model.entites.Patient;
-import com.patient.treatment.documentation.gui.model.entites.User;
+import java.time.LocalDateTime;
 
 public interface DocumentationProjection {
 
@@ -29,12 +28,12 @@ public interface DocumentationProjection {
 
     void setMedicines(String medicines);
 
-    User getUser();
+    LocalDateTime getCreationDate();
 
-    void setUser(User user);
+    void setCreationDate(LocalDateTime creationDate);
 
-    Patient getPatient();
+    String getUuid();
 
-    void setPatient(Patient patient);
+    void setUuid(String uuid);
 
 }

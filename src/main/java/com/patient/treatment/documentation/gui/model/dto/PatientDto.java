@@ -1,7 +1,6 @@
 package com.patient.treatment.documentation.gui.model.dto;
 
-import com.patient.treatment.documentation.gui.model.entites.Documentation;
-import com.patient.treatment.documentation.gui.model.enumy.SexEnum;
+import com.patient.treatment.documentation.gui.model.enumy.GenderEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -9,8 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalDate;
 
 @EqualsAndHashCode
 @Getter
@@ -20,9 +18,11 @@ import java.util.List;
 @AllArgsConstructor
 public class PatientDto {
 
-    private String name;
+    private Long id;
 
-    private String surname;
+    private String firstName;
+
+    private String lastName;
 
     private String pesel;
 
@@ -34,12 +34,8 @@ public class PatientDto {
 
     private String postCode;
 
-    private SexEnum sexEnum;
+    private GenderEnum gender;
 
-    private LocalDateTime dateOfBirth;
-
-    private String phoneNumber;
-
-    private List<Documentation> documentations;
+    private LocalDate dateOfBirth;
 
 }

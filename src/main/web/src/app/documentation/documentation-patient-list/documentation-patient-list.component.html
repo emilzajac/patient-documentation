@@ -1,0 +1,172 @@
+<div>
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    <strong>Error!</strong> {{errorMessage}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="alert alert-success" *ngIf="infoMessage">
+    <strong>Successful!</strong> {{infoMessage}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div *ngIf="dataSource">
+    <div class="container p-4 col-12">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <h4 class="panel-title">Lista dokumentacji</h4>
+              </div>
+            </div>
+
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Szukaj">
+            </mat-form-field>
+
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource">
+
+                <ng-container matColumnDef="ID">
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Lp.</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.id}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Wywiad">
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Wywiad</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.interview}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Badanie_przedmiotowe">
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Badanie przedmiotowe</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.physicalExamination}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Rozpoznanie">
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Rozpoznanie</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.diagnosisOfTheDisease}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Zalecenia">
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Zalecenia</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.recommendations}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Leki">
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Leki</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{element.medicines}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Data_Wpisu">
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Data Wpisu</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">{{onFormatDate(element.creationDate)}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                  <th class="pl-1 pr-1" mat-header-cell *matHeaderCellDef>Akcje</th>
+                  <td class="pl-1 pr-1" mat-cell *matCellDef="let element">
+                    <a class="btn btn-info custom-btn-link m-1" (click)="editDocumentationRequest(element)"><em>Edytuj</em></a>
+                    <a class="btn btn-danger custom-btn-link m-1" (click)="deleteDocumentationRequest(element)"><em>Usuń</em></a>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="documentationEditModal" #documentationEditModal tabIndex="-1" role="dialog" aria-labelledby="documentationModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form name="form-documentation-update" (ngSubmit)="form.form.valid && editDocumentation()" #form="ngForm" novalidate>
+        <div class="modal-header">
+          <h5 class="modal-title">Edycja Dokumentacji</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-danger" *ngIf="errorMessage">
+            <strong>Error!</strong> {{errorMessage}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form [formGroup]="documentationChangeForm" class="col form-group">
+            <label for="creationDate">Data Wpisu</label>
+            <input
+              formControlName="creationDate"
+              id="creationDate"
+              class="form-control"
+              name="creationDate"
+              bsDatepicker
+              value="{{getDate(selectedDocumentation.creationDate)}}"
+              [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY, HH:mm:ss', containerClass: 'theme-blue'}">
+          </form>
+          <div class="col form-group">
+            <label for="interview">Wywiad lekarski</label>
+            <textarea type="text" class="form-control" id="interview" name="interview"
+                      [(ngModel)]="selectedDocumentation.interview" #interview="ngModel" rows="3" required></textarea>
+          </div>
+          <div class="col form-group">
+            <label for="physicalExamination">Badanie przedmiotowe</label>
+            <textarea type="text" class="form-control" id="physicalExamination" name="physicalExamination"
+                      [(ngModel)]="selectedDocumentation.physicalExamination" #physicalExamination="ngModel" rows="3" required></textarea>
+          </div>
+          <div class="col form-group">
+            <label for="diagnosisOfTheDisease">Rozpoznanie</label>
+            <textarea type="text" class="form-control" id="diagnosisOfTheDisease" name="diagnosisOfTheDisease"
+                      #diagnosisOfTheDisease="ngModel" [(ngModel)]="selectedDocumentation.diagnosisOfTheDisease" required rows="3"></textarea>
+          </div>
+          <div class="col form-group">
+            <label for="medicines">Leki i dawkowanie</label>
+            <textarea type="text" class="form-control" id="medicines" name="medicines"
+                      [(ngModel)]="selectedDocumentation.medicines" #medicines="ngModel" rows="3" required></textarea>
+          </div>
+          <div class="col form-group">
+            <label for="recommendations">Zalecenia</label>
+            <textarea type="text" class="form-control" id="recommendations" name="recommendations"
+                      [(ngModel)]="selectedDocumentation.recommendations" #recommendations="ngModel" rows="3" required></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="deleteDocumentationModal" #deleteDocumentationModal tabIndex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Potwierdzenie</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        Na pewno chcesz usunąć dokumentacje pacjenta:
+        <strong>{{selectedDocumentation.patient?.firstName + " " + selectedDocumentation.patient?.lastName}}</strong>
+        z datą wpisu: <strong>{{selectedDocumentation.creationDate}}</strong>?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj operacje</button>
+        <button type="button" class="btn btn-danger" (click)="deleteDocumentation()">Usuń</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.model.dto;
 
-import com.patient.treatment.documentation.gui.model.entites.UserRole;
+import com.patient.treatment.documentation.gui.model.enumy.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,16 +16,26 @@ import java.util.Set;
 @AllArgsConstructor
 public class UserDto {
 
-    private String name;
+    private long id;
 
     private String username;
 
-    private String surname;
+    private String firstName;
+
+    private String lastName;
 
     private String email;
 
     private String password;
 
-    private Set<UserRole> userRoles;
+    private Set<RoleEnum> userRoles;
+
+    private boolean accountNonExpired;
+
+    private boolean accountNonLocked;
+
+    private boolean credentialsNonExpired;
+
+    private boolean enabled;
 
 }

@@ -1,0 +1,66 @@
+<div class="container p-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <header class="card-header">
+          <h4 class="card-title mt-2">Dodaj Dokumentacje</h4>
+        </header>
+        <article class="card-body">
+          <form [formGroup]="documentationAddForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+              <div class="col form-group">
+                <label for="patientPesel">Pesel pacjenta</label>
+                <input (change)="checkPesel(field.patientPesel.value)" [ngClass]="{ 'is-invalid': field.patientPesel.touched && field.patientPesel.errors }" formControlName="patientPesel"
+                       id="patientPesel"
+                       class="form-control"
+                       type="text"/>
+                <div *ngIf="field.patientPesel.touched && field.patientPesel.errors" class="invalid-feedback">
+                  <div *ngIf="field.patientPesel.errors.required">Pesel pacjenta jest wymagany</div>
+                  <div *ngIf="field.patientPesel.errors.notProperLength">Pesel jest złej długości</div>
+                  <div *ngIf="field.patientPesel.errors.notExists">Pacjent o takim peselu nie istnieje w bazie, proszę dodać pacjenta</div>
+                </div>
+              </div>
+              <div class="col form-group">
+                <label for="creationDate">Data wpisu</label>
+                <input
+                  autocomplete="off"
+                  id="creationDate"
+                  class="form-control"
+                  bsDatepicker
+                  formControlName="creationDate"
+                  [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY, HH:mm:ss', containerClass: 'theme-blue'}">
+              </div>
+            </div>
+            <div class="col form-group">
+              <label for="interview">Wywiad lekarski</label>
+              <textarea id="interview" type="text" formControlName="interview" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="col form-group">
+              <label for="physicalExamination">Badanie przedmiotowe</label>
+              <textarea id="physicalExamination" type="text" formControlName="physicalExamination"
+                        class="form-control" rows="3"></textarea>
+            </div>
+            <div class="col form-group">
+              <label for="diagnosisOfTheDisease">Rozpoznanie</label>
+              <textarea id="diagnosisOfTheDisease" type="text" formControlName="diagnosisOfTheDisease"
+                        class="form-control" rows="3"></textarea>
+            </div>
+            <div class="col form-group">
+              <label for="medicines">Leki i dawkowanie</label>
+              <textarea id="medicines" type="text" formControlName="medicines"
+                        class="form-control" rows="4"></textarea>
+            </div>
+            <div class="col form-group">
+              <label for="recommendations">Zalecenia</label>
+              <textarea id="recommendations" type="text" formControlName="recommendations"
+                        class="form-control" rows="3"></textarea>
+            </div>
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-primary  btn-lg btn-block">Dodaj</button>
+            </div>
+          </form>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,8 @@
 package com.patient.treatment.documentation.gui.model.projections;
 
-import com.patient.treatment.documentation.gui.model.entites.Documentation;
-import com.patient.treatment.documentation.gui.model.enumy.SexEnum;
+import com.patient.treatment.documentation.gui.model.enumy.GenderEnum;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalDate;
 
 public interface PatientProjection {
 
@@ -12,13 +10,13 @@ public interface PatientProjection {
 
     void setId(Long id);
 
-    String getName();
+    String getFirstName();
 
-    void setName(String name);
+    void setFirstName(String name);
 
-    String getSurname();
+    String getLastName();
 
-    void setSurname(String surname);
+    void setLastName(String surname);
 
     String getPesel();
 
@@ -40,20 +38,12 @@ public interface PatientProjection {
 
     void setPostCode(String postCode);
 
-    SexEnum getSexEnum();
+    GenderEnum getGender();
 
-    void setSexEnum(SexEnum sexEnum);
+    void setGender(GenderEnum gender);
 
-    LocalDateTime getDateOfBirth();
+    LocalDate getDateOfBirth();
 
-    void setDateOfBirth(LocalDateTime dateOfBirth);
-
-    String getPhoneNumber();
-
-    void setPhoneNumber(String phoneNumber);
-
-    List<Documentation> getDocumentations();
-
-    void setDocumentations(List<Documentation> documentations);
+    void setDateOfBirth(LocalDate dateOfBirth);
 
 }

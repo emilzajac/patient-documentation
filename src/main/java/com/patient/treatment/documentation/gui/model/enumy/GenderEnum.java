@@ -3,13 +3,13 @@ package com.patient.treatment.documentation.gui.model.enumy;
 import lombok.Getter;
 
 @Getter
-public enum SexEnum {
+public enum GenderEnum {
     FEMALE("Kobieta"),
     MALE("Mężczyzna");
 
     private final String kod;
 
-    SexEnum(String kod) {
+    GenderEnum(String kod) {
         this.kod = kod;
     }
 }

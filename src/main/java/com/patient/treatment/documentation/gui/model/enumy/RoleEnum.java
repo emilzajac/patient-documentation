@@ -6,6 +6,6 @@ import lombok.Getter;
 public enum RoleEnum {
 
     ADMINISTRATOR,
-    LEKARZ
+    DOCTOR
 
 }

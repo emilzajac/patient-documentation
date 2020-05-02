@@ -1,0 +1,105 @@
+<div class="container p-4">
+  <div class="row justify-content-around">
+    <div class="col-md-6 align-self-center">
+      <div class="card">
+        <header class="card-header">
+          <h4 class="card-title mt-2">Dodaj pacjenta</h4>
+        </header>
+        <article class="card-body">
+          <form [formGroup]="patientAddForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+              <div class="col form-group">
+                <label for="firstname">Imie</label>
+                <input id="firstName" type="text" formControlName="firstName" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && field.firstName.errors }"/>
+                <div *ngIf="submitted && field.firstName.errors" class="invalid-feedback">
+                  <div *ngIf="field.firstName.errors.required">Imie jest wymagane</div>
+                </div>
+              </div>
+              <div class="col form-group">
+                <label for="lastName">Nazwisko</label>
+                <input id="lastName" type="text" formControlName="lastName" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && field.lastName.errors }"/>
+                <div *ngIf="submitted && field.lastName.errors" class="invalid-feedback">
+                  <div *ngIf="field.lastName.errors.required">Nazwisko jest wymagane</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="pesel">Pesel</label>
+              <input id="pesel" type="text" formControlName="pesel" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && field.pesel.errors }"/>
+              <div *ngIf="submitted && field.pesel.errors" class="invalid-feedback">
+                <div *ngIf="field.pesel.errors.required">Pesel jest wymagany</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="dateOfBirth">Data urodzenia</label>
+              <input
+                placeholder="dd.mm.rrrr"
+                autocomplete="off"
+                id="dateOfBirth"
+                class="form-control"
+                bsDatepicker
+                formControlName="dateOfBirth"
+                [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-blue'}"
+                [ngClass]="{ 'is-invalid': submitted && field.dateOfBirth.errors }">
+              <div *ngIf="submitted && field.dateOfBirth.errors" class="invalid-feedback">
+                <div *ngIf="field.dateOfBirth.errors.required">Data jest wymagana</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-check form-check-inline">
+                <input id="male" class="form-check-input" type="radio" formControlName="gender" name="gender" value="MALE">
+                <span class="form-check-label">Mężczyzna</span>
+              </label>
+              <label class="form-check form-check-inline">
+                <input id="female" class="form-check-input" type="radio" formControlName="gender" name="gender" value="FEMALE">
+                <span class="form-check-label">Kobieta</span>
+              </label>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="city">Miasto</label>
+                <input id="city" type="text" formControlName="city" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && field.city.errors }"/>
+                <div *ngIf="submitted && field.city.errors" class="invalid-feedback">
+                  <div *ngIf="field.city.errors.required">Miasto jest wymagane</div>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="street">Ulica</label>
+                <input id="street" type="text" formControlName="street" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && field.street.errors }"/>
+                <div *ngIf="submitted && field.street.errors" class="invalid-feedback">
+                  <div *ngIf="field.street.errors.required">Ulica jest wymagana</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="houseNumber">Numer domu</label>
+                <input id="houseNumber" type="text" formControlName="houseNumber" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && field.houseNumber.errors }"/>
+                <div *ngIf="submitted && field.houseNumber.errors" class="invalid-feedback">
+                  <div *ngIf="field.houseNumber.errors.required">Ulica jest wymagana</div>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="postCode">Kod pocztowy</label>
+                <input id="postCode" type="text" formControlName="postCode" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && field.postCode.errors }"/>
+                <div *ngIf="submitted && field.postCode.errors" class="invalid-feedback">
+                  <div *ngIf="field.postCode.errors.required">Ulica jest wymagana</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block">Dodaj</button>
+            </div>
+          </form>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
@@ -21,7 +22,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Documentation {
+public class Documentation implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

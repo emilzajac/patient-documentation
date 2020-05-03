@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
@@ -25,7 +26,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class ConfirmationToken {
+public class ConfirmationToken implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date")

@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {AuthenticationService} from "../service/authentication.service";
-import {User} from "../model/user";
+import { Component, OnInit }      from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { AuthenticationService }  from "../service/authentication.service";
+import { User }                   from "../model/user";
 
 @Component({
   selector: 'app-menu',
@@ -19,12 +19,12 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isLoggedIn = AuthenticationService.isUserLoggedIn();
+    this.isLoggedIn = this.authenticationService.isUserLoggedIn();
     this.loggedUser = this.getLoggedUser();
   }
 
   getLoggedUser(): User {
-    return AuthenticationService.getLoggedUser();
+    return this.authenticationService.getLoggedUser();
   }
 
   handleLogout() {

@@ -4,7 +4,7 @@ import com.patient.treatment.documentation.gui.model.dto.PatientDto;
 import com.patient.treatment.documentation.gui.model.form.PatientForm;
 import com.patient.treatment.documentation.gui.model.projections.PatientProjection;
 import com.patient.treatment.documentation.gui.service.PatientService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,16 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/patients")
 public class PatientController {
 
     private final PatientService patientService;
-
-    @Autowired
-    public PatientController(PatientService patientService) {
-        this.patientService = patientService;
-    }
 
     @PostMapping
     public ResponseEntity create(@RequestBody PatientForm patientForm) {

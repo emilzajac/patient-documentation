@@ -9,8 +9,8 @@ import com.patient.treatment.documentation.gui.model.form.PatientForm;
 import com.patient.treatment.documentation.gui.model.projections.PatientProjection;
 import com.patient.treatment.documentation.gui.repository.PatientRepository;
 import com.patient.treatment.documentation.gui.session.SessionService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -19,20 +19,12 @@ import java.util.List;
 
 @Slf4j
 @Service
+@AllArgsConstructor
 public class PatientService {
 
     private final PatientRepository patientRepository;
     private final PatientMapper patientMapper;
     private final SessionService sessionService;
-
-    @Autowired
-    public PatientService(PatientRepository patientRepository,
-                          PatientMapper patientMapper,
-                          SessionService sessionService) {
-        this.patientRepository = patientRepository;
-        this.patientMapper = patientMapper;
-        this.sessionService = sessionService;
-    }
 
     public Patient create(PatientForm patientForm) {
         if (patientRepository.findByPesel(patientForm.getPesel()).isPresent()) {

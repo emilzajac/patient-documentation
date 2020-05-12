@@ -1,5 +1,8 @@
 package com.patient.treatment.documentation.gui.configuration;
 
+import com.patient.treatment.documentation.gui.exceptions.UnexpectedException;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,11 +14,15 @@ import java.util.Locale;
 @Configuration
 public class Config {
 
-    private static final String SALT = "salt-protection";
+    @Value("${salt.protection}")
+    private String salt;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder(12, new SecureRandom(SALT.getBytes()));
+        if (StringUtils.isBlank(salt)) {
+            throw new UnexpectedException("salt protection was not set");
+        }
+        return new BCryptPasswordEncoder(12, new SecureRandom(salt.getBytes()));
     }
 
     @Bean

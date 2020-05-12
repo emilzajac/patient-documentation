@@ -2,6 +2,7 @@ import { Injectable }                                                        fro
 import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable }                                                        from 'rxjs';
 import { AuthenticationService }                                             from "../service/authentication.service";
+import { User }                                                              from '../model/user';
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
@@ -10,7 +11,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let currentUser = this.authenticationService.currentUserValue;
+    let currentUser: User = this.authenticationService.currentUserValue;
     if (currentUser) {
       const authRequest = request.clone({
         headers: new HttpHeaders({

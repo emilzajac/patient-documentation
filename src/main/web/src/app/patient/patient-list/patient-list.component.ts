@@ -53,7 +53,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   }
 
   getAllPatientsOfDoctor() {
-    this.patientService.getByDoctorUsername(this.authenticationService.currentUserValue.username)
+    this.patientService.getByDoctorUsername(this.authenticationService.getLoggedUser().username)
       .subscribe((patients: PatientListInterface[]) => {
         this.patients = patients;
         this.dataSource.data = patients;

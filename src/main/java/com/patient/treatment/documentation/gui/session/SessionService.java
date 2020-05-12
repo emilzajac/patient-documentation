@@ -1,21 +1,17 @@
 package com.patient.treatment.documentation.gui.session;
 
 import com.patient.treatment.documentation.gui.model.entites.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 
 
 @Service
+@AllArgsConstructor
 public class SessionService {
 
     private RequestUtils requestUtils;
-
-    @Autowired
-    public SessionService(RequestUtils requestUtils) {
-        this.requestUtils = requestUtils;
-    }
 
     public void invalidate() {
         getActualSession().invalidate();

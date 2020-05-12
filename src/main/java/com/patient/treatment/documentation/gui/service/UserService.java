@@ -11,8 +11,8 @@ import com.patient.treatment.documentation.gui.model.form.UserRegisterForm;
 import com.patient.treatment.documentation.gui.model.projections.UserProjection;
 import com.patient.treatment.documentation.gui.repository.ConfirmationTokenRepository;
 import com.patient.treatment.documentation.gui.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@AllArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
@@ -30,19 +31,6 @@ public class UserService {
     private final UserMapper userMapper;
     private ConfirmationTokenRepository confirmationTokenRepository;
     private EmailSenderService emailSenderService;
-
-    @Autowired
-    public UserService(UserRepository userRepository,
-                       BCryptPasswordEncoder passwordEncoder,
-                       UserMapper userMapper,
-                       ConfirmationTokenRepository confirmationTokenRepository,
-                       EmailSenderService emailSenderService) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.userMapper = userMapper;
-        this.confirmationTokenRepository = confirmationTokenRepository;
-        this.emailSenderService = emailSenderService;
-    }
 
     public void createUser(UserRegisterForm userRegisterForm) {
         if (userRepository.findByEmail(userRegisterForm.getEmail()) != null) {
@@ -88,7 +76,7 @@ public class UserService {
         User user = userMapper.toUserEntity(userRepository.findByUsername(userName));
         if (user == null) {
             log.warn("Username {} not found", userName);
-            throw new UserException("Username " + userName + " not found", HttpStatus.NOT_FOUND);
+            throw new UserException("Użytkownik " + userName + " nie istnieje", HttpStatus.UNAUTHORIZED);
         }
         return user;
     }

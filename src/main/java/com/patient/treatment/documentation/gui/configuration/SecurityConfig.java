@@ -1,16 +1,19 @@
 package com.patient.treatment.documentation.gui.configuration;
 
+import com.patient.treatment.documentation.gui.model.security.jwt.AuthTokenFilter;
 import com.patient.treatment.documentation.gui.service.security.UserPrincipalDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
@@ -19,13 +22,14 @@ import org.springframework.security.web.header.writers.frameoptions.XFrameOption
 
 @EnableWebSecurity
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final BCryptPasswordEncoder passwordEncoder;
     private final UserPrincipalDetailService userPrincipalDetailService;
-    private final CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
     private final CustomStatusEntryPoint customStatusEntryPoint;
+    private final AuthTokenFilter authTokenFilter;
 
     private static final String[] PERMITTED_LINKS = {"/api/users/register", "/confirm/account", "/api/login", "/index.html", "/"};
     private static final String HEADER_CONTENT_SECURITY_POLICY =
@@ -35,14 +39,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     public SecurityConfig(BCryptPasswordEncoder passwordEncoder,
                           UserPrincipalDetailService userPrincipalDetailService,
-                          CustomAuthenticationFailureHandler customAuthenticationFailureHandler,
                           CustomAccessDeniedHandler customAccessDeniedHandler,
-                          CustomStatusEntryPoint customStatusEntryPoint) {
+                          CustomStatusEntryPoint customStatusEntryPoint,
+                          AuthTokenFilter authTokenFilter) {
         this.passwordEncoder = passwordEncoder;
         this.userPrincipalDetailService = userPrincipalDetailService;
-        this.customAuthenticationFailureHandler = customAuthenticationFailureHandler;
         this.customAccessDeniedHandler = customAccessDeniedHandler;
         this.customStatusEntryPoint = customStatusEntryPoint;
+        this.authTokenFilter = authTokenFilter;
     }
 
     @Override
@@ -65,8 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .sessionFixation().migrateSession();
 
-        httpSecurity
-                .httpBasic()
+        httpSecurity.exceptionHandling()
                 .authenticationEntryPoint(customStatusEntryPoint)
                 .and()
 
@@ -81,13 +84,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrfTokenRepository(getCsrfTokenRepository())
                 .and()
 
-                .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/api/login")
-                .failureForwardUrl("/login")
-                .failureHandler(customAuthenticationFailureHandler)
-                .and()
-
                 .logout()
                 .logoutUrl("/api/logout")
                 .logoutSuccessHandler(successLogoutHandler())
@@ -99,6 +95,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .authenticationEntryPoint(customStatusEntryPoint)
                 .accessDeniedHandler(customAccessDeniedHandler);
+
+        httpSecurity.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     private CsrfTokenRepository getCsrfTokenRepository() {
@@ -115,6 +113,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public LogoutSuccessHandler successLogoutHandler() {
         return new SuccessLogoutHandler();
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
 }

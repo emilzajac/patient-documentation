@@ -10,8 +10,8 @@ import com.patient.treatment.documentation.gui.model.projections.DocumentationPr
 import com.patient.treatment.documentation.gui.repository.DocumentationRepository;
 import com.patient.treatment.documentation.gui.repository.PatientRepository;
 import com.patient.treatment.documentation.gui.session.SessionService;
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -20,23 +20,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@AllArgsConstructor
 public class DocumentationService {
 
     private final DocumentationRepository documentationRepository;
     private final DocumentationMapper documentationMapper;
     private final SessionService sessionService;
     private final PatientRepository patientRepository;
-
-    @Autowired
-    public DocumentationService(DocumentationRepository documentationRepository,
-                                DocumentationMapper documentationMapper,
-                                SessionService sessionService,
-                                PatientRepository patientRepository) {
-        this.documentationRepository = documentationRepository;
-        this.documentationMapper = documentationMapper;
-        this.sessionService = sessionService;
-        this.patientRepository = patientRepository;
-    }
 
     public Documentation create(DocumentationForm documentationForm) {
         Documentation documentationEntity = documentationMapper.toDocumentationEntity(documentationForm);

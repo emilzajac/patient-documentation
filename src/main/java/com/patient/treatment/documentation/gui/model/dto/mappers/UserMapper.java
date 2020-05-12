@@ -1,6 +1,7 @@
 package com.patient.treatment.documentation.gui.model.dto.mappers;
 
 import com.patient.treatment.documentation.gui.model.dto.UserDto;
+import com.patient.treatment.documentation.gui.model.dto.UserJwtDto;
 import com.patient.treatment.documentation.gui.model.dto.mappers.decorators.UserMapperDecorator;
 import com.patient.treatment.documentation.gui.model.entites.User;
 import com.patient.treatment.documentation.gui.model.form.UserRegisterForm;
@@ -21,5 +22,9 @@ public interface UserMapper {
     @Mapping(target = "userRoles",
             expression = "java( user.getUserRoles().stream().map(UserRole::getRoleEnum).collect(java.util.stream.Collectors.toSet()) )")
     UserDto toUserDTO(User user);
+
+    @Mapping(target = "userRoles",
+            expression = "java( user.getUserRoles().stream().map(UserRole::getRoleEnum).collect(java.util.stream.Collectors.toSet()) )")
+    UserJwtDto toUserJwtDTO(User user);
 
 }

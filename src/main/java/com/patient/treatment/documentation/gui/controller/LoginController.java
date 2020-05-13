@@ -1,7 +1,7 @@
 package com.patient.treatment.documentation.gui.controller;
 
 import com.patient.treatment.documentation.gui.model.dto.UserJwtDto;
-import com.patient.treatment.documentation.gui.model.form.LoginForm;
+import com.patient.treatment.documentation.gui.model.forms.LoginForm;
 import com.patient.treatment.documentation.gui.service.LoginService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

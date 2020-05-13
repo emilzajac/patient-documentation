@@ -2,7 +2,7 @@ package com.patient.treatment.documentation.gui.model.dto.mappers.decorators;
 
 import com.patient.treatment.documentation.gui.model.dto.mappers.DocumentationMapper;
 import com.patient.treatment.documentation.gui.model.entites.Documentation;
-import com.patient.treatment.documentation.gui.model.form.DocumentationForm;
+import com.patient.treatment.documentation.gui.model.forms.DocumentationForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 

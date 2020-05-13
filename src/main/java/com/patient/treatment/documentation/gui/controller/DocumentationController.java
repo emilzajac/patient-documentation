@@ -1,7 +1,7 @@
 package com.patient.treatment.documentation.gui.controller;
 
 import com.patient.treatment.documentation.gui.model.dto.DocumentationDto;
-import com.patient.treatment.documentation.gui.model.form.DocumentationForm;
+import com.patient.treatment.documentation.gui.model.forms.DocumentationForm;
 import com.patient.treatment.documentation.gui.model.projections.DocumentationProjection;
 import com.patient.treatment.documentation.gui.service.DocumentationService;
 import lombok.AllArgsConstructor;

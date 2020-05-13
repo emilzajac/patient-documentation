@@ -1,7 +1,7 @@
 package com.patient.treatment.documentation.gui.model.entites;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.patient.treatment.documentation.gui.model.enumy.GenderEnum;
+import com.patient.treatment.documentation.gui.model.enums.GenderEnum;
 import com.patient.treatment.documentation.gui.service.AttributeCipher;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

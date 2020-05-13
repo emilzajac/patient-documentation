@@ -4,7 +4,7 @@ import com.patient.treatment.documentation.gui.model.dto.UserDto;
 import com.patient.treatment.documentation.gui.model.dto.UserJwtDto;
 import com.patient.treatment.documentation.gui.model.dto.mappers.decorators.UserMapperDecorator;
 import com.patient.treatment.documentation.gui.model.entites.User;
-import com.patient.treatment.documentation.gui.model.form.UserRegisterForm;
+import com.patient.treatment.documentation.gui.model.forms.UserRegisterForm;
 import com.patient.treatment.documentation.gui.model.projections.UserProjection;
 import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;

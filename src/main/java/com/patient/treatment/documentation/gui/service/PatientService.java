@@ -5,7 +5,7 @@ import com.patient.treatment.documentation.gui.exceptions.UserException;
 import com.patient.treatment.documentation.gui.model.dto.PatientDto;
 import com.patient.treatment.documentation.gui.model.dto.mappers.PatientMapper;
 import com.patient.treatment.documentation.gui.model.entites.Patient;
-import com.patient.treatment.documentation.gui.model.form.PatientForm;
+import com.patient.treatment.documentation.gui.model.forms.PatientForm;
 import com.patient.treatment.documentation.gui.model.projections.PatientProjection;
 import com.patient.treatment.documentation.gui.repository.PatientRepository;
 import com.patient.treatment.documentation.gui.session.SessionService;

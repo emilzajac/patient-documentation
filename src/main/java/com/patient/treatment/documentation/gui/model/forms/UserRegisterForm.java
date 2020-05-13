@@ -1,4 +1,4 @@
-package com.patient.treatment.documentation.gui.model.form;
+package com.patient.treatment.documentation.gui.model.forms;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

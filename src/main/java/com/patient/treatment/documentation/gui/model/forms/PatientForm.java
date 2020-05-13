@@ -1,6 +1,6 @@
-package com.patient.treatment.documentation.gui.model.form;
+package com.patient.treatment.documentation.gui.model.forms;
 
-import com.patient.treatment.documentation.gui.model.enumy.GenderEnum;
+import com.patient.treatment.documentation.gui.model.enums.GenderEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

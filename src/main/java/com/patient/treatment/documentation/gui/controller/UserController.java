@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.controller;
 
-import com.patient.treatment.documentation.gui.model.form.UserRegisterForm;
+import com.patient.treatment.documentation.gui.model.forms.UserRegisterForm;
 import com.patient.treatment.documentation.gui.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

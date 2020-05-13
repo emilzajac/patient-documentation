@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.model.projections;
 
-import com.patient.treatment.documentation.gui.model.enumy.GenderEnum;
+import com.patient.treatment.documentation.gui.model.enums.GenderEnum;
 
 import java.time.LocalDate;
 

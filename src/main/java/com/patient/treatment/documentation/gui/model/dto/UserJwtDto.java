@@ -1,6 +1,6 @@
 package com.patient.treatment.documentation.gui.model.dto;
 
-import com.patient.treatment.documentation.gui.model.enumy.RoleEnum;
+import com.patient.treatment.documentation.gui.model.enums.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

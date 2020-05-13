@@ -1,4 +1,4 @@
-package com.patient.treatment.documentation.gui.model.enumy;
+package com.patient.treatment.documentation.gui.model.enums;
 
 import lombok.Getter;
 

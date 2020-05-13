@@ -2,7 +2,7 @@ package com.patient.treatment.documentation.gui.service;
 
 import com.patient.treatment.documentation.gui.model.dto.UserJwtDto;
 import com.patient.treatment.documentation.gui.model.dto.mappers.UserMapper;
-import com.patient.treatment.documentation.gui.model.form.LoginForm;
+import com.patient.treatment.documentation.gui.model.forms.LoginForm;
 import com.patient.treatment.documentation.gui.model.security.UserPrincipal;
 import com.patient.treatment.documentation.gui.model.security.jwt.JwtUtils;
 import com.patient.treatment.documentation.gui.session.SessionService;

@@ -1,12 +1,14 @@
 import { Component, OnInit }                  from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router }             from "@angular/router";
-import { AlertService }                       from "../../service/alert.service";
-import { first }                              from "rxjs/operators";
-import { DocumentationService }               from "../../service/documentation.service";
-import { PatientInterface }                   from "../../model/patient-interface";
-import { PatientService }                     from "../../service/patient.service";
-import { BsLocaleService }                    from "ngx-bootstrap/datepicker";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AlertService }           from "../../service/alert.service";
+import { first }                  from "rxjs/operators";
+import { DocumentationService }   from "../../service/documentation.service";
+import { PatientInterface }       from "../../model/patient-interface";
+import { PatientService }         from "../../service/patient.service";
+import { BsLocaleService }        from "ngx-bootstrap/datepicker";
+import * as moment                from 'moment';
+import { DateFormatConstant }     from '../../constans/date-format.constants';
 
 @Component({
   selector: 'app-documentation-add',
@@ -76,13 +78,16 @@ export class DocumentationAddComponent implements OnInit {
       return;
     }
 
+    let creationDateForm = this.documentationAddForm.value.creationDate;
+    this.documentationAddForm.value.creationDate = moment(creationDateForm).format(DateFormatConstant.DATE_TIME_REQUEST_FORMAT);
+
     this.loading = true;
     this.documentationService.add(this.documentationAddForm.value)
       .pipe(first())
       .subscribe(
         () => {
-          this.alertService.success('Dokumentacja została dodana do listy Pacjenta', true);
           this.router.navigate([`/documentation/list/patient/${this.patient.id}`]);
+          this.alertService.success('Dokumentacja została dodana do listy Pacjenta', true);
         },
         error => {
           this.alertService.error(error);

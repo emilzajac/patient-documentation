@@ -17,8 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -46,8 +44,6 @@ public class User implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
-    @Email
-    @NotNull
     @Column(name = "email", unique = true)
     private String email;
 

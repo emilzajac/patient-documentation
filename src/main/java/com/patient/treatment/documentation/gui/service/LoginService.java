@@ -14,8 +14,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.validation.Valid;
-
 @Service
 @AllArgsConstructor
 public class LoginService {
@@ -25,7 +23,7 @@ public class LoginService {
     private UserMapper userMapper;
     private JwtUtils jwtUtils;
 
-    public UserJwtDto getUserJwtDto(@RequestBody @Valid LoginForm loginForm) {
+    public UserJwtDto getUserJwtDto(@RequestBody LoginForm loginForm) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginForm.getUsername(), loginForm.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserJwtDto userJwt = createJwt(authentication);

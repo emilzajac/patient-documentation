@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api")
@@ -20,7 +18,7 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping("/login")
-    public ResponseEntity<UserJwtDto> authenticateUser(@Valid @RequestBody LoginForm loginForm) {
+    public ResponseEntity<UserJwtDto> authenticateUser(@RequestBody LoginForm loginForm) {
         UserJwtDto userJwt = loginService.getUserJwtDto(loginForm);
         return ResponseEntity.ok(userJwt);
     }

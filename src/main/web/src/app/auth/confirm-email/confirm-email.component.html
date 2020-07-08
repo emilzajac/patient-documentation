@@ -1,0 +1,25 @@
+<div class="container justify-content-around">
+  <div class="row align-self-center">
+    <div class="col-sm-6 offset-sm-3">
+      <h2 class="text-center p-5">Potwierdzenie adresu email</h2>
+      <form (ngSubmit)="onSubmit()" [formGroup]="confirmationEmailForm">
+        <div class="form-group">
+          <label for="email">Adres e-mail</label>
+          <input [ngClass]="{ 'is-invalid': submitted && field.email.errors }" class="form-control" formControlName="email" id="email"
+                 type="text"/>
+          <div *ngIf="submitted && field.email.errors" class="invalid-feedback">
+            <div *ngIf="field.email.errors.required">Adres e-mail jest wymagany</div>
+            <div *ngIf="field.email.errors.email">Adres e-mail jest niepoprawny</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Wyślij
+          </button>
+          <a class="btn btn-link" routerLink="/login">Anuluj</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

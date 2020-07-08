@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class LoginController {
 
-    private LoginService loginService;
+    private final LoginService loginService;
 
     @PostMapping("/login")
     public ResponseEntity<UserJwtDto> authenticateUser(@RequestBody LoginForm loginForm) {

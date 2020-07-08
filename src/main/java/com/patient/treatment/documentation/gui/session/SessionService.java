@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 @AllArgsConstructor
 public class SessionService {
 
-    private RequestUtils requestUtils;
+    private final RequestUtils requestUtils;
 
     public void invalidate() {
         getActualSession().invalidate();

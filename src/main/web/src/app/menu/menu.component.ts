@@ -10,7 +10,7 @@ import { User }                   from "../model/user";
 })
 export class MenuComponent implements OnInit {
 
-  private isLoggedIn: boolean = false;
+  public isLoggedIn: boolean = false;
   public loggedUser: User;
 
   constructor(private route: ActivatedRoute,

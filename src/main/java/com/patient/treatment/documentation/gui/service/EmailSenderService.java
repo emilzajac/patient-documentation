@@ -39,4 +39,14 @@ public class EmailSenderService {
         javaMailSender.send(mailMessage);
     }
 
+    @Async
+    public void sendRestTokenEmail(String emailAddress, String confirmationToken) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(emailAddress);
+        mailMessage.setSubject("Reset hasła");
+        mailMessage.setFrom(fromOfConfirmationTokenMessage);
+        mailMessage.setText("Jeśli chcesz zresetować hasło kliknij w link " + addressUrl + "/change-password/" + confirmationToken);
+        javaMailSender.send(mailMessage);
+    }
+
 }

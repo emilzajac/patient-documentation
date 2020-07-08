@@ -26,7 +26,7 @@ public class PatientController {
     private final PatientService patientService;
 
     @PostMapping
-    public ResponseEntity create(@RequestBody PatientForm patientForm) {
+    public ResponseEntity<Void> create(@RequestBody PatientForm patientForm) {
         patientService.create(patientForm);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

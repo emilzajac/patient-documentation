@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomStatusEntryPoint customStatusEntryPoint;
     private final AuthTokenFilter authTokenFilter;
 
-    private static final String[] PERMITTED_LINKS = {"/api/users/register", "/confirm/account", "/api/login", "/index.html", "/"};
+    private static final String[] PERMITTED_LINKS = {"/api/users/register", "/confirm/account", "/api/login", "/index.html", "/", "/api/password/reset-token/**", "/api/password/reset"};
     private static final String HEADER_CONTENT_SECURITY_POLICY =
             "default-src 'self'; font-src 'self' data: http://fonts.gstatic.com; img-src 'self' data:; " +
                     "script-src * data: https://ssl.gstatic.com 'unsafe-inline' 'unsafe-eval';" +
@@ -80,7 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
 
                 .csrf()
-                .ignoringAntMatchers("/api/login", "/api/users/register", "/confirm/account")
+                .ignoringAntMatchers("/api/login", "/api/users/register", "/confirm/account", "/api/password/reset")
                 .csrfTokenRepository(getCsrfTokenRepository())
                 .and()
 

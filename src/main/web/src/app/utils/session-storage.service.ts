@@ -1,22 +1,21 @@
-import { Injectable }   from '@angular/core';
-import CryptoES         from 'crypto-es';
-import { v4 as uuidv4 } from 'uuid';
+import { Injectable } from '@angular/core';
+import CryptoES       from 'crypto-es';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionStorageService {
 
-  private readonly cryptoKey: string;
+  private readonly uuid: string;
 
   constructor() {
-    this.cryptoKey = new Date().getTime().toString() + uuidv4();
+    let date = new Date();
+    this.uuid = date.getFullYear().toString() + date.getDate().toString() + date.toDateString();
   }
 
   set(key: string, value: any) {
     key = this.hash(key);
-    value = JSON.stringify(value);
-    value = this.encryptData(value);
+    value = this.encryptData(JSON.stringify(value));
     sessionStorage.setItem(key, value);
   }
 
@@ -40,15 +39,15 @@ export class SessionStorageService {
   }
 
   private encryptData(data): string {
-    return CryptoES.AES.encrypt(data, this.cryptoKey).toString();
+    return CryptoES.AES.encrypt(data, this.uuid).toString();
   }
 
   private decryptData(data): string {
-    return CryptoES.AES.decrypt(data, this.cryptoKey).toString(CryptoES.enc.Utf8);
+    return CryptoES.AES.decrypt(data, this.uuid).toString(CryptoES.enc.Utf8);
   }
 
   private hash(key: string): string {
-    return CryptoES.HmacSHA512(key, this.cryptoKey).toString();
+    return CryptoES.HmacSHA512(key, this.uuid).toString();
   }
 
 }

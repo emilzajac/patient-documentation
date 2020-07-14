@@ -2,10 +2,10 @@ import { Component, OnInit }                  from '@angular/core';
 import { first }                              from "rxjs/operators";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router }                             from "@angular/router";
-import { AuthenticationService }              from '../../service/authentication.service';
 import { UserService }                        from '../../service/user.service';
 import { AlertService }                       from '../../service/alert.service';
 import { MustMatch }                          from '../../helper/validators';
+import { AuthenticationService }              from '../authentication.service';
 
 @Component({
   selector: 'app-registration',

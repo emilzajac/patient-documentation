@@ -26,28 +26,23 @@ import {
   MatSortModule,
   MatTableModule,
   MatToolbarModule
-}                                            from "@angular/material";
-import { DocumentationAddComponent }         from './documentation/documentation-add/documentation-add.component';
-import { DocumentationPatientListComponent } from './documentation/documentation-patient-list/documentation-patient-list.component';
-import { BsDatepickerModule }                from 'ngx-bootstrap/datepicker';
-import { defineLocale }                      from 'ngx-bootstrap/chronos';
-import { plLocale }                          from 'ngx-bootstrap/locale';
-import { FooterComponent }                   from './footer/footer.component';
-import { NgbDropdownModule }                 from "@ng-bootstrap/ng-bootstrap";
-import { HttpXsrfInterceptor }               from './interceptor/HttpXsrfInterceptor';
-import { LoginComponent }                    from './auth/login/login.component';
-import { RegisterComponent }                 from './auth/register/register.component';
-import { ConfirmEmailComponent }             from './auth/confirm-email/confirm-email.component';
-import { ChangePasswordComponent }           from './auth/change-password/change-password.component';
+}                                                                    from "@angular/material";
+import { DocumentationAddComponent }                                 from './documentation/documentation-add/documentation-add.component';
+import { DocumentationPatientListComponent }                         from './documentation/documentation-patient-list/documentation-patient-list.component';
+import { BsDatepickerModule }                                        from 'ngx-bootstrap/datepicker';
+import { defineLocale }                                              from 'ngx-bootstrap/chronos';
+import { plLocale }                                                  from 'ngx-bootstrap/locale';
+import { FooterComponent }                                           from './footer/footer.component';
+import { NgbDropdownModule }                                         from "@ng-bootstrap/ng-bootstrap";
+import { HttpXsrfInterceptor }                                       from './interceptor/HttpXsrfInterceptor';
+import { AuthModule }                                                from './auth/auth.module';
 
 defineLocale('pl', plLocale);
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     MenuComponent,
-    RegisterComponent,
     AlertComponent,
     HomeComponent,
     PatientAddComponent,
@@ -55,10 +50,9 @@ defineLocale('pl', plLocale);
     DocumentationAddComponent,
     DocumentationPatientListComponent,
     FooterComponent,
-    ConfirmEmailComponent,
-    ChangePasswordComponent,
   ],
   imports: [
+    AuthModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

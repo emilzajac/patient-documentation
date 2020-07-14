@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { PatientService }                              from "../../service/patient.service";
-import { AuthenticationService }                       from "../../service/authentication.service";
 import { Patient }                                     from "../../model/patient-interface";
 import { PatientListInterface }                        from "./patient-list-interface";
 import { MatPaginator, MatTableDataSource }            from '@angular/material';
 import { Router }                                      from "@angular/router";
+import { AuthenticationService }                       from '../../auth/authentication.service';
 
 declare var $: any;
 

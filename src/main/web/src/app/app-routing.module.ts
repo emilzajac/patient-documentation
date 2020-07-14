@@ -5,21 +5,22 @@ import { PatientAddComponent }                from "./patient/patient-add/patien
 import { PatientListComponent }               from "./patient/patient-list/patient-list.component";
 import { DocumentationAddComponent }          from "./documentation/documentation-add/documentation-add.component";
 import { DocumentationPatientListComponent }  from "./documentation/documentation-patient-list/documentation-patient-list.component";
-import { AuthGuard }                          from "./guard/auth.guard";
-import { LoginComponent }                     from './auth/login/login.component';
-import { RegisterComponent }                  from './auth/register/register.component';
 import { environment }                        from '../environments/environment';
-import { ConfirmEmailComponent }              from './auth/confirm-email/confirm-email.component';
-import { ChangePasswordComponent }            from './auth/change-password/change-password.component';
+import { AuthGuard }                          from './auth/guards/auth.guard';
 
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'login'},
+  {
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full',
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(module => module.AuthModule),
+  },
+
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'confirm-email', component: ConfirmEmailComponent},
-  {path: 'change-password/:token', component: ChangePasswordComponent},
   {path: 'patient/add', component: PatientAddComponent, canActivate: [AuthGuard]},
   {path: 'patient/list', component: PatientListComponent, canActivate: [AuthGuard]},
   {path: 'documentation/add', component: DocumentationAddComponent, canActivate: [AuthGuard]},

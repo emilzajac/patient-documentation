@@ -1,0 +1,15 @@
+version: '3'
+services:
+  db-warehouse-postgres:
+    image: 'postgres:12.3'
+    build: database-postgres
+    ports:
+      - '3756:5432'
+    volumes:
+      - 'data:/var/lib/postgresql/data'
+    environment:
+      - LANG=en_US.utf8
+      - POSTGRES_PASSWORD=xxx
+      - TZ=Europe/Warsaw
+volumes:
+  data: {}

@@ -1,6 +1,8 @@
 # Patient documentation
 Project for managing patient documentation
 
+The sample application deployed to HEROKU: https://dokumentacja-pacjenta.herokuapp.com
+
 **Prerequisites:** [Java 14](https://adoptopenjdk.net/).
 
 ## Steps to run database
